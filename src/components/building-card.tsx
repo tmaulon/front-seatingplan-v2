@@ -1,5 +1,6 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
+import { Flipper, Flipped } from "react-flip-toolkit"
 
 export interface IPicture {
 	src: string
@@ -16,7 +17,46 @@ export interface IBuilding {
 	occupancyStatistics: number
 	picture?: IPicture
 }
-export const BuildingCard = ({ building }: { building: IBuilding }) => {
+const SmallBuildingCard = ({ building }: { building: IBuilding }) => {
+	const { id, name, picture } = building
+	return (
+		<Flipped flipId="animatedDiv" transformOrigin={"top"}>
+			<CollapsedZoneLink
+				href={`http://gooogle.com/?q=${id}`}
+				id={`list-${id}`}
+				onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+					e.preventDefault()
+				}}
+			>
+				<Head>
+					<HeadTextWrapper>
+						<Flipped inverseFlipId="animatedDiv">
+							<HeadLabel>Nom du Bâtiment</HeadLabel>
+						</Flipped>
+
+						<Flipped inverseFlipId="animatedDiv">
+							<HeadOutput>{name}</HeadOutput>
+						</Flipped>
+					</HeadTextWrapper>
+
+					<PictureWrapper>
+						<Flipped inverseFlipId="animatedDiv">
+							<Picture
+								src={`${
+									picture && picture.src
+										? process.env.PUBLIC_URL + picture.src
+										: process.env.PUBLIC_URL + "/images/buildings/batiment-placeholder.png"
+								}`}
+								alt={`${picture && picture.alt ? picture.alt : "Image du Bâtiment"}`}
+							/>
+						</Flipped>
+					</PictureWrapper>
+				</Head>
+			</CollapsedZoneLink>
+		</Flipped>
+	)
+}
+const ExpandedBuildingCard = ({ building }: { building: IBuilding }) => {
 	const {
 		id,
 		name,
@@ -29,54 +69,122 @@ export const BuildingCard = ({ building }: { building: IBuilding }) => {
 		picture,
 	} = building
 	return (
-		<ZoneLink href={`http://gooogle.com/?q=${id}`} id={`list-${id}`}>
-			<Head>
-				<HeadTextWrapper>
-					<HeadLabel>Nom du Bâtiment</HeadLabel>
-					<HeadOutput>{name}</HeadOutput>
-				</HeadTextWrapper>
+		<Flipped flipId="animatedDiv" transformOrigin={"top"}>
+			<ExpandedZoneLink
+				href={`http://gooogle.com/?q=${id}`}
+				id={`list-${id}`}
+				onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+					e.preventDefault()
+				}}
+			>
+				<Head>
+					<HeadTextWrapper>
+						<Flipped inverseFlipId="animatedDiv">
+							<HeadLabel>Nom du Bâtiment</HeadLabel>
+						</Flipped>
 
-				<PictureWrapper>
-					<Picture
-						src={`${
-							picture && picture.src
-								? process.env.PUBLIC_URL + picture.src
-								: process.env.PUBLIC_URL + "/images/buildings/batiment-placeholder.png"
-						}`}
-						alt={`${picture && picture.alt ? picture.alt : "Image du Bâtiment"}`}
-					/>
-				</PictureWrapper>
-			</Head>
-			<Details>
-				<Detail>
-					<DetailLabel>Nombre d'étages</DetailLabel>
-					<DetailOutput>{floorsNumber}</DetailOutput>
-				</Detail>
-				<Detail>
-					<DetailLabel>Nombre de Collabrateurs</DetailLabel>
-					<DetailOutput>{collaboratorsNumber}</DetailOutput>
-				</Detail>
-				<Detail>
-					<DetailLabel>Capacité Max d'acceuil</DetailLabel>
-					<DetailOutput>{receptionMaxCapacity}</DetailOutput>
-				</Detail>
-				<Detail>
-					<DetailLabel>Capacité d'acceuil actuelle</DetailLabel>
-					<DetailOutput>{currentReceptionCapavity}</DetailOutput>
-				</Detail>
-				<Detail>
-					<DetailLabel>Nombre de Bureaux</DetailLabel>
-					<DetailOutput>{officesNumber}</DetailOutput>
-				</Detail>
-				<Detail>
-					<DetailLabel>Statistiques d'occupation</DetailLabel>
-					<DetailOutput>{`${occupancyStatistics}%`}</DetailOutput>
-				</Detail>
-			</Details>
-		</ZoneLink>
+						<Flipped inverseFlipId="animatedDiv">
+							<HeadOutput>{name}</HeadOutput>
+						</Flipped>
+					</HeadTextWrapper>
+
+					<PictureWrapper>
+						<Flipped inverseFlipId="animatedDiv">
+							<Picture
+								src={`${
+									picture && picture.src
+										? process.env.PUBLIC_URL + picture.src
+										: process.env.PUBLIC_URL + "/images/buildings/batiment-placeholder.png"
+								}`}
+								alt={`${picture && picture.alt ? picture.alt : "Image du Bâtiment"}`}
+							/>
+						</Flipped>
+					</PictureWrapper>
+				</Head>
+				<Details>
+					<Detail>
+						<Flipped inverseFlipId="animatedDiv">
+							<DetailLabel>Nombre d'étages</DetailLabel>
+						</Flipped>
+						<Flipped inverseFlipId="animatedDiv">
+							<DetailOutput>{floorsNumber}</DetailOutput>
+						</Flipped>
+					</Detail>
+					<Detail>
+						<Flipped inverseFlipId="animatedDiv">
+							<DetailLabel>Nombre de Collabrateurs</DetailLabel>
+						</Flipped>
+
+						<Flipped inverseFlipId="animatedDiv">
+							<DetailOutput>{collaboratorsNumber}</DetailOutput>
+						</Flipped>
+					</Detail>
+					<Detail>
+						<Flipped inverseFlipId="animatedDiv">
+							<DetailLabel>Capacité Max d'acceuil</DetailLabel>
+						</Flipped>
+
+						<Flipped inverseFlipId="animatedDiv">
+							<DetailOutput>{receptionMaxCapacity}</DetailOutput>
+						</Flipped>
+					</Detail>
+					<Detail>
+						<Flipped inverseFlipId="animatedDiv">
+							<DetailLabel>Capacité d'acceuil actuelle</DetailLabel>
+						</Flipped>
+
+						<Flipped inverseFlipId="animatedDiv">
+							<DetailOutput>{currentReceptionCapavity}</DetailOutput>
+						</Flipped>
+					</Detail>
+					<Detail>
+						<Flipped inverseFlipId="animatedDiv">
+							<DetailLabel>Nombre de Bureaux</DetailLabel>
+						</Flipped>
+
+						<Flipped inverseFlipId="animatedDiv">
+							<DetailOutput>{officesNumber}</DetailOutput>
+						</Flipped>
+					</Detail>
+					<Detail>
+						<Flipped inverseFlipId="animatedDiv">
+							<DetailLabel>Statistiques d'occupation</DetailLabel>
+						</Flipped>
+
+						<Flipped inverseFlipId="animatedDiv">
+							<DetailOutput>{`${occupancyStatistics}%`}</DetailOutput>
+						</Flipped>
+					</Detail>
+				</Details>
+			</ExpandedZoneLink>
+		</Flipped>
 	)
 }
-const ZoneLink = styled.a`
+export const BuildingCard = ({ building }: { building: IBuilding }) => {
+	const [isOpen, setIsOpen] = useState(false)
+
+	return (
+		<Flipper flipKey={isOpen} spring="veryGentle" applyTransformOrigin={false}>
+			<div onClick={(e) => setIsOpen((e) => !e)}>
+				{isOpen ? <ExpandedBuildingCard building={building} /> : <SmallBuildingCard building={building} />}
+			</div>
+		</Flipper>
+	)
+}
+const CollapsedZoneLink = styled.a`
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+	color: inherit;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
+	background-color: #fff;
+	border-radius: 14px;
+	overflow: hidden;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.14);
+`
+const ExpandedZoneLink = styled.a`
 	padding: 0;
 	margin: 0;
 	text-decoration: none;
@@ -140,6 +248,7 @@ const Picture = styled.img`
 	width: 100%;
 	height: auto;
 	object-fit: contain;
+	padding: 20px;
 `
 const Details = styled.div`
 	display: grid;

@@ -25,16 +25,14 @@ const ZonesDrawingWrapper = styled.ul`
 	margin: 0 auto;
 	padding: 20px;
 	display: grid;
-	width: 300px;
-	height: 300px;
 	background-color: #e6e6e6;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: repeat(4, 1fr);
+	grid-template-columns: repeat(4, 70px);
+	grid-template-rows: repeat(4, 90px);
 	grid-gap: 20px;
 	transform: rotate(0);
-	box-shadow: 6px 0px 10px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.35);
 `
-const Box = styled.li<{ cubewidth?: number }>`
+const Box = styled.li`
 	background-color: rgba(43, 43, 43, 1);
 	margin: 0;
 	padding: 0;
@@ -45,6 +43,7 @@ const Box = styled.li<{ cubewidth?: number }>`
 const ZonesDrawing = styled.svg`
 	grid-column: span 1;
 	grid-row: span 1;
+	height: 100%;
 	width: 100%;
 	display: flex;
 	justify-content: center;

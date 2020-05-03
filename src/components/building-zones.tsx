@@ -22,7 +22,7 @@ export const BuildingZones = ({ buildings }: { buildings: IBuilding[] }) => {
 }
 const ZonesSVGWrapper = styled.div`
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: space-between;
 	max-width: 1100px;
 	margin: 0 auto;
@@ -34,8 +34,8 @@ const ZonesList = styled.ul`
 	padding: 0;
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 1fr;
-	grid-auto-rows: 1fr;
+	grid-template-rows: auto;
+	grid-auto-rows: auto;
 	grid-gap: 50px;
 `
 const ZoneItem = styled.li`
