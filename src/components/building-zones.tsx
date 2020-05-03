@@ -10,7 +10,6 @@ export const BuildingZones = ({ buildings }: { buildings: IBuilding[] }) => {
 			<ZonesSVG zones={buildings} />
 			<ZonesListWrapper>
 				<ZonesList>
-					{buildings.map}
 					{buildings.map((p, index) => (
 						<ZoneItem key={`${p.id}-${index}`}>
 							<BuildingCard building={p} />

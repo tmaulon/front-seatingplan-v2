@@ -11,7 +11,7 @@ export const ZonesSVG = ({ zones }: { zones: IZoneSVG[] }) => {
 				<Box key={`${id}-${index}`}>
 					<ZonesDrawing>
 						<g>
-							<path id={id} aria-title={name} d="m 20 20 l 0 50 l 30 0 l 0 -50 l -30 0" />
+							<path id={id} aria-label={name} d="m 20 20 l 0 50 l 30 0 l 0 -50 l -30 0" />
 						</g>
 					</ZonesDrawing>
 				</Box>
@@ -21,13 +21,6 @@ export const ZonesSVG = ({ zones }: { zones: IZoneSVG[] }) => {
 }
 
 const ZonesDrawingWrapper = styled.ul`
-	/* width: 100%;
-	max-width: 500px;
-	display: grid;
-	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-	grid-auto-rows: 1fr;
-	margin: 0;
-	padding: 0; */
 	list-style-type: none;
 	margin: 0 auto;
 	padding: 20px;
