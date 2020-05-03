@@ -1,26 +1,65 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react"
+import "./App.css"
+import { BuildingsZonesSection } from "./components/buildings-zones-section"
+import { IBuilding } from "./components/building-card"
+
+const FakeBuildingsData: IBuilding[] = [
+	{
+		id: "batiment-a",
+		name: "Bâtiment A",
+		floorsNumber: 4,
+		collaboratorsNumber: 64,
+		receptionMaxCapacity: 64,
+		currentReceptionCapavity: 64,
+		officesNumber: 64,
+		occupancyStatistics: 100,
+		picture: {
+			src: "/images/buildings/batiment-a.png",
+			alt: "Image du Bâtiment A",
+		},
+	},
+	{
+		id: "batiment-b",
+		name: "Bâtiment B",
+		floorsNumber: 4,
+		collaboratorsNumber: 64,
+		receptionMaxCapacity: 64,
+		currentReceptionCapavity: 64,
+		officesNumber: 64,
+		occupancyStatistics: 100,
+		picture: {
+			src: "/images/buildings/batiment-b.png",
+			alt: "Image du Bâtiment B",
+		},
+	},
+]
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [data, setData] = useState(null)
+
+	useEffect(() => {
+		fetch("/demo/all")
+			.then((res) => res.json())
+			.then((json) => {
+				console.log("json", json)
+				setData(json)
+			})
+	}, [])
+
+	return (
+		<div className="App">
+			<header className="App-header">
+				<h1>Seating Plan App</h1>
+			</header>
+			<main>
+				<section>
+					<h2>Fetch All User data</h2>
+					<pre>{JSON.stringify(data, null, 2)}</pre>
+				</section>
+				<BuildingsZonesSection buildings={FakeBuildingsData} />
+			</main>
+		</div>
+	)
 }
 
-export default App;
+export default App
