@@ -1,44 +1,22 @@
 import React from "react"
 import styled from "styled-components"
-import { HeadLabel, HeadOutput } from "./building-card"
-
-export interface IPicture {
-	src: string
-	alt: string
-}
-export interface IBuilding {
-	id: number
-	name: string
-	floorsNumber: number
-	collaboratorsNumber: number
-	receptionMaxCapacity: number
-	currentReceptionCapavity: number
-	officesNumber: number
-	occupancyStatistics: number
-	picture?: IPicture
-}
+import { IBuilding, IPlan } from "../../domain/building"
 
 export const BuildingCardDetails = ({ building }: { building: IBuilding }) => {
-	const {
-		id,
-		name,
-		floorsNumber,
-		collaboratorsNumber,
-		receptionMaxCapacity,
-		currentReceptionCapavity,
-		officesNumber,
-		occupancyStatistics,
-		picture,
-	} = building
+	const { plans, receptionMaxCapacity, currentReceptionCapacity, officesNumber, occupancyStatistics } = building
+	const getTotalCollaborators = (plans: IPlan[]) => plans.map((p) => p.collaborators.length).reduce((a, b) => a + b)
+
 	return (
 		<Details>
 			<Detail>
-				<DetailOutput>{floorsNumber}</DetailOutput>
+				<DetailLabel>Nombre d'étages</DetailLabel>
+
+				<DetailOutput>{plans.length}</DetailOutput>
 			</Detail>
 			<Detail>
 				<DetailLabel>Nombre de Collabrateurs</DetailLabel>
 
-				<DetailOutput>{collaboratorsNumber}</DetailOutput>
+				<DetailOutput>{getTotalCollaborators(plans)}</DetailOutput>
 			</Detail>
 			<Detail>
 				<DetailLabel>Capacité Max d'acceuil</DetailLabel>
@@ -48,7 +26,7 @@ export const BuildingCardDetails = ({ building }: { building: IBuilding }) => {
 			<Detail>
 				<DetailLabel>Capacité d'acceuil actuelle</DetailLabel>
 
-				<DetailOutput>{currentReceptionCapavity}</DetailOutput>
+				<DetailOutput>{currentReceptionCapacity}</DetailOutput>
 			</Detail>
 			<Detail>
 				<DetailLabel>Nombre de Bureaux</DetailLabel>
@@ -64,11 +42,21 @@ export const BuildingCardDetails = ({ building }: { building: IBuilding }) => {
 	)
 }
 
-const DetailLabel = styled(HeadLabel)`
+const DetailLabel = styled.p`
+	margin: 0;
+	color: #4c516a;
+	text-align: left;
 	font-size: 0.875rem;
+	line-height: 28px;
+	font-weight: 700;
 `
-const DetailOutput = styled(HeadOutput)`
+const DetailOutput = styled.h3`
 	font-size: 1rem;
+	margin: 0;
+	color: #4c516a;
+	text-align: left;
+	line-height: 28px;
+	font-weight: 700;
 `
 const Details = styled.div`
 	display: grid;
@@ -90,14 +78,4 @@ const Detail = styled.div`
 	padding: 20px;
 	text-align: left;
 	width: -webkit-fill-available;
-`
-const AsideArrowWrapper = styled.div`
-	grid-area: aside;
-	grid-row: span 2;
-	grid-column: span 1;
-	border-left: 1px solid #d9daef;
-	color: #d9daef;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 `
