@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect, createRef } from "react"
-import styled, { StyledComponent } from "styled-components"
+import React from "react"
+import styled from "styled-components"
 import { IBuilding } from "../building-card/building-card"
 
 export type IZoneSVG = Pick<IBuilding, "id" | "name">
