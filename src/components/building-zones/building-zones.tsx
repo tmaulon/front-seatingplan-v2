@@ -1,18 +1,30 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { ZonesSVG } from "./zones-svg"
-import { IBuilding, BuildingCard } from "./building-card"
+import { IBuilding, BuildingCard } from "../building-card/building-card"
 
 export const BuildingZones = ({ buildings }: { buildings: IBuilding[] }) => {
 	console.log(buildings)
+	const [buildingHovered, setBuildingHovered] = useState<string>("")
+	const [buildingCardHovered, setBuildingCardHovered] = useState<string>("")
 	return (
 		<ZonesSVGWrapper>
-			<ZonesSVG zones={buildings} />
+			<ZonesSVG
+				buildingCardHovered={buildingCardHovered}
+				zones={buildings}
+				buildingHovered={buildingHovered}
+				setBuildingHovered={setBuildingHovered}
+			/>
 			<ZonesListWrapper>
 				<ZonesList>
 					{buildings.map((p, index) => (
 						<ZoneItem key={`${p.id}-${index}`}>
-							<BuildingCard building={p} />
+							<BuildingCard
+								index={index}
+								building={p}
+								buildingSVGZoneHovered={buildingHovered}
+								setBuildingCardHovered={setBuildingCardHovered}
+							/>
 						</ZoneItem>
 					))}
 				</ZonesList>
@@ -24,8 +36,7 @@ const ZonesSVGWrapper = styled.div`
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
-	max-width: 1100px;
-	margin: 0 auto;
+	margin: 0;
 `
 const ZonesListWrapper = styled.div``
 const ZonesList = styled.ul`
