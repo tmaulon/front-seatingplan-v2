@@ -1,8 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { IBuilding } from "../building-card/building-card"
-
-export type IZoneSVG = Pick<IBuilding, "id" | "name">
+import { IZoneSVG } from "../../domain/building"
 
 export const ZonesSVG = ({
 	zones,

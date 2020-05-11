@@ -2,22 +2,9 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { Flipper, Flipped } from "react-flip-toolkit"
 import { NavLink } from "react-router-dom"
+import { BuildingCardDetails } from "./building-card-details"
+import { IBuilding } from "../../domain/building"
 
-export interface IPicture {
-	src: string
-	alt: string
-}
-export interface IBuilding {
-	id: number
-	name: string
-	floorsNumber: number
-	collaboratorsNumber: number
-	receptionMaxCapacity: number
-	currentReceptionCapavity: number
-	officesNumber: number
-	occupancyStatistics: number
-	picture?: IPicture
-}
 const SmallBuildingCard = ({
 	building,
 	hovered,
@@ -66,20 +53,10 @@ const SmallBuildingCard = ({
 }
 
 const ExpandedBuildingCard = ({ building, index, isOpen }: { building: IBuilding; index: number; isOpen: boolean }) => {
-	const {
-		id,
-		name,
-		floorsNumber,
-		collaboratorsNumber,
-		receptionMaxCapacity,
-		currentReceptionCapavity,
-		officesNumber,
-		occupancyStatistics,
-		picture,
-	} = building
+	const { id, name, picture } = building
 	return (
 		<Flipped flipId="animatedBuildingCardWrapper" transformOrigin={"top"}>
-			<ExpandedZoneLink to={`/building/building-${id}`} id={`list-${id}`} title={`Enter in Building : ${name}`}>
+			<ExpandedZoneLink id={`list-${id}`}>
 				<Flipped inverseFlipId={"animatedBuildingCardWrapper"}>
 					<Head>
 						<HeadTextWrapper>
@@ -99,63 +76,19 @@ const ExpandedBuildingCard = ({ building, index, isOpen }: { building: IBuilding
 						</PictureWrapper>
 					</Head>
 				</Flipped>
-				<Details>
-					<Detail>
-						<Flipped inverseFlipId="animatedBuildingCardWrapper">
-							<DetailLabel>Nombre d'étages</DetailLabel>
-						</Flipped>
-						<Flipped inverseFlipId="animatedBuildingCardWrapper">
-							<DetailOutput>{floorsNumber}</DetailOutput>
-						</Flipped>
-					</Detail>
-					<Detail>
-						<Flipped inverseFlipId="animatedBuildingCardWrapper">
-							<DetailLabel>Nombre de Collabrateurs</DetailLabel>
-						</Flipped>
 
-						<Flipped inverseFlipId="animatedBuildingCardWrapper">
-							<DetailOutput>{collaboratorsNumber}</DetailOutput>
-						</Flipped>
-					</Detail>
-					<Detail>
-						<Flipped inverseFlipId="animatedBuildingCardWrapper">
-							<DetailLabel>Capacité Max d'acceuil</DetailLabel>
-						</Flipped>
+				<Flipped inverseFlipId={"animatedBuildingCardWrapper"}>
+					<BuildingCardDetails building={building} />
+				</Flipped>
 
-						<Flipped inverseFlipId="animatedBuildingCardWrapper">
-							<DetailOutput>{receptionMaxCapacity}</DetailOutput>
-						</Flipped>
-					</Detail>
-					<Detail>
-						<Flipped inverseFlipId="animatedBuildingCardWrapper">
-							<DetailLabel>Capacité d'acceuil actuelle</DetailLabel>
-						</Flipped>
-
-						<Flipped inverseFlipId="animatedBuildingCardWrapper">
-							<DetailOutput>{currentReceptionCapavity}</DetailOutput>
-						</Flipped>
-					</Detail>
-					<Detail>
-						<Flipped inverseFlipId="animatedBuildingCardWrapper">
-							<DetailLabel>Nombre de Bureaux</DetailLabel>
-						</Flipped>
-
-						<Flipped inverseFlipId="animatedBuildingCardWrapper">
-							<DetailOutput>{officesNumber}</DetailOutput>
-						</Flipped>
-					</Detail>
-					<Detail>
-						<Flipped inverseFlipId="animatedBuildingCardWrapper">
-							<DetailLabel>Statistiques d'occupation</DetailLabel>
-						</Flipped>
-
-						<Flipped inverseFlipId="animatedBuildingCardWrapper">
-							<DetailOutput>{`${occupancyStatistics}%`}</DetailOutput>
-						</Flipped>
-					</Detail>
-				</Details>
-
-				<AsideArrowWrapper>></AsideArrowWrapper>
+				<AsideArrowWrapper
+					to={`/building/building-${id}`}
+					id={`list-${id}`}
+					title={`Enter in Building : ${name}`}
+					index={index}
+				>
+					>
+				</AsideArrowWrapper>
 			</ExpandedZoneLink>
 		</Flipped>
 	)
@@ -215,8 +148,11 @@ const CollapsedZoneLink = styled.div`
 	background-color: #fff;
 	border-radius: 14px;
 	overflow: hidden;
+	&:hover {
+		cursor: pointer;
+	}
 `
-const ExpandedZoneLink = styled(NavLink)`
+const ExpandedZoneLink = styled.div`
 	display: grid;
 	grid-template-rows: 140px 2fr;
 	grid-template-columns: 1fr;
@@ -231,6 +167,9 @@ const ExpandedZoneLink = styled(NavLink)`
 	background-color: #fff;
 	border-radius: 14px;
 	overflow: hidden;
+	&:hover {
+		cursor: pointer;
+	}
 `
 const Head = styled.div`
 	display: grid;
@@ -251,26 +190,20 @@ const HeadTextWrapper = styled.div`
 		height: 100%;
 	}
 `
-export const HeadLabel = styled.p`
+const HeadLabel = styled.p`
 	margin: 0;
 	color: #d4d5ed;
 	text-align: left;
 	font-size: 1rem;
 	font-weight: 500;
 `
-export const HeadOutput = styled.h3`
+const HeadOutput = styled.h3`
 	margin: 0;
 	color: #4c516a;
 	text-align: left;
 	font-size: 2rem;
 	line-height: 28px;
 	font-weight: 700;
-`
-const DetailLabel = styled(HeadLabel)`
-	font-size: 0.875rem;
-`
-const DetailOutput = styled(HeadOutput)`
-	font-size: 1rem;
 `
 const PictureWrapper = styled.div<{ index: number; isOpen: boolean }>`
 	background-color: ${(props) => (props.isOpen ? (props.index % 2 === 0 ? "#00b0bd" : "#cddc39") : "transparent")};
@@ -293,28 +226,8 @@ const Picture = styled.img`
 	object-fit: contain;
 	padding: 20px;
 `
-const Details = styled.div`
-	display: grid;
-	grid-row: span 1;
-	grid-column: span 1;
-	grid-area: details;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(3, 1fr);
-	& > div {
-		border-top: 1px solid #d9daef;
-	}
-	& > div:nth-of-type(odd) {
-		border-right: 1px solid #d9daef;
-	}
-`
-const Detail = styled.div`
-	grid-row: span 1;
-	grid-column: span 1;
-	padding: 20px;
-	text-align: left;
-	width: -webkit-fill-available;
-`
-const AsideArrowWrapper = styled.div`
+
+const AsideArrowWrapper = styled(NavLink)<{ index: number }>`
 	grid-area: aside;
 	grid-row: span 2;
 	grid-column: span 1;
@@ -323,4 +236,9 @@ const AsideArrowWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-weight: 900;
+	text-decoration: none;
+	&:hover {
+		color: ${(props) => (props.index % 2 === 0 ? "#00b0bd" : "#cddc39")};
+	}
 `

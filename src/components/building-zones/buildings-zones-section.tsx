@@ -1,8 +1,8 @@
 import React from "react"
 import { BuildingZones } from "./building-zones"
-import { IBuilding } from "../building-card/building-card"
 import styled from "styled-components"
 import { Container } from "../container/container"
+import { IBuilding } from "../../domain/building"
 export const BuildingsZonesSection = ({ buildings }: { buildings: IBuilding[] }) => {
 	return (
 		<StyledSection>

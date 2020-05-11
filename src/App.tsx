@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import "./App.css"
-import * as H from "history"
-import "./App.css"
-import { BrowserRouter, Route, RouteComponentProps, NavLink, Redirect, Prompt } from "react-router-dom"
+import { BrowserRouter, Route, NavLink } from "react-router-dom"
 import styled from "styled-components"
 import { Button } from "./components/button/button"
 import { HomePage } from "./pages/home-page"
@@ -50,6 +48,7 @@ const AppHeader = styled.header`
 	top: 0;
 	left: 0;
 	right: 0;
+	z-index: 10;
 `
 const NavList = styled.ul`
 	list-style-type: none;

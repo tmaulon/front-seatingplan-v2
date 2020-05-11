@@ -1,51 +1,21 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import "../App.css"
 import { BuildingsZonesSection } from "../components/building-zones/buildings-zones-section"
-import { IBuilding } from "../components/building-card/building-card"
 import styled from "styled-components"
 import { Container } from "../components/container/container"
-
-export const FakeBuildingsData: IBuilding[] = [
-	{
-		id: 1,
-		name: "Bâtiment A",
-		floorsNumber: 4,
-		collaboratorsNumber: 64,
-		receptionMaxCapacity: 64,
-		currentReceptionCapavity: 64,
-		officesNumber: 64,
-		occupancyStatistics: 100,
-		picture: {
-			src: "/images/buildings/batiment-1.png",
-			alt: "Image du Bâtiment A",
-		},
-	},
-	{
-		id: 2,
-		name: "Bâtiment B",
-		floorsNumber: 4,
-		collaboratorsNumber: 64,
-		receptionMaxCapacity: 64,
-		currentReceptionCapavity: 64,
-		officesNumber: 64,
-		occupancyStatistics: 100,
-		picture: {
-			src: "/images/buildings/batiment-2.png",
-			alt: "Image du Bâtiment B",
-		},
-	},
-]
+import { useCustomfetch } from "../hooks/useCustomFetch"
+import { FakeBuildingsData } from "../content/fake-buildings-data"
 
 export const HomePage = () => {
-	const [data, setData] = useState(null)
+	const [url, setUrl] = useState<string>("")
+	const { data, loading, error } = useCustomfetch(url)
+
+	const getAllUsersData = () => {
+		setUrl(`/demo/all`)
+	}
 
 	useEffect(() => {
-		fetch("/demo/all")
-			.then((res) => res.json())
-			.then((json) => {
-				console.log("json", json)
-				setData(json)
-			})
+		getAllUsersData()
 	}, [])
 
 	return (
@@ -63,7 +33,13 @@ export const HomePage = () => {
 			</PresentationSection>
 			<section>
 				<h2>Fetch All User data</h2>
-				<pre>{JSON.stringify(data, null, 2)}</pre>
+				{loading && url && (
+					<LoadingWrapper>
+						<p>Loading ...</p>
+					</LoadingWrapper>
+				)}
+				{!loading && data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+				{!loading && error && <p>{error}</p>}
 			</section>
 			<BuildingsZonesSection buildings={FakeBuildingsData} />
 		</>
@@ -99,4 +75,7 @@ const PlaceholderPicture = styled.img`
 	width: 100%;
 	object-fit: cover;
 	object-position: center;
+`
+export const LoadingWrapper = styled.div`
+	margin-left: 10px;
 `

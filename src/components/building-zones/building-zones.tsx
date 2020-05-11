@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import { ZonesSVG } from "./zones-svg"
-import { IBuilding, BuildingCard } from "../building-card/building-card"
+import { BuildingCard } from "../building-card/building-card"
+import { IBuilding } from "../../domain/building"
 
 export const BuildingZones = ({ buildings }: { buildings: IBuilding[] }) => {
 	console.log(buildings)
