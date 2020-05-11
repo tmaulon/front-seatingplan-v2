@@ -1,13 +1,19 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { IBuilding, IPlan } from "../../domain/building"
 
 export const BuildingCardDetails = ({ building }: { building: IBuilding }) => {
+	const [isBuildingDetailPage, setIsBuildingDetailPage] = useState(false)
 	const { plans, receptionMaxCapacity, currentReceptionCapacity, officesNumber, occupancyStatistics } = building
 	const getTotalCollaborators = (plans: IPlan[]) => plans.map((p) => p.collaborators.length).reduce((a, b) => a + b)
 
+	useEffect(() => {
+		const path = document.location.pathname
+		if (path.startsWith("/building/")) setIsBuildingDetailPage(true)
+	})
+
 	return (
-		<Details>
+		<Details isBuildingDetailPage={isBuildingDetailPage}>
 			<Detail>
 				<DetailLabel>Nombre d'étages</DetailLabel>
 
@@ -58,13 +64,16 @@ const DetailOutput = styled.h3`
 	line-height: 28px;
 	font-weight: 700;
 `
-const Details = styled.div`
+const Details = styled.div<{ isBuildingDetailPage: boolean }>`
 	display: grid;
 	grid-row: span 1;
 	grid-column: span 1;
 	grid-area: details;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(3, 1fr);
+	background-color: ${(props) => (props.isBuildingDetailPage ? "rgba(255, 255, 255, 0.7)" : "")};
+	border-radius: ${(props) => (props.isBuildingDetailPage ? "14px" : "")};
+	overflow: ${(props) => (props.isBuildingDetailPage ? "hidden" : "")};
 	& > div {
 		border-top: 1px solid #d9daef;
 	}
