@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
 import "../App.css"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { Container } from "../components/container/container"
 import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
 import { IBuilding, PlanProps, IPlan } from "../domain/building"
+import { Button } from "../components/button/button"
+import { Flipper, Flipped } from "react-flip-toolkit"
 
 export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 	const fakeBuildings: IBuilding[] = FakeBuildingsData
@@ -12,6 +14,7 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 	const [fakePlan, setFakePlan] = useState<IPlan>()
 	const [url, setUrl] = useState<string>("")
 	const { data, loading, error } = useCustomfetch(url)
+	const [collaboratorsListOpen, setCollaboratorsListOpen] = useState(false)
 
 	const getUserData = (userId: number) => {
 		//delete + 1 when back is done
@@ -71,6 +74,28 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 								</li>
 							</PlanDetails>
 						</PlanInformations>
+						<CollaBoratorsDetailsWrapper>
+							<Button onClick={() => setCollaboratorsListOpen(!collaboratorsListOpen)}>
+								{collaboratorsListOpen
+									? `Refermer la liste des collaborateurs`
+									: `Voir les collaborateurs présents à cet étage`}
+							</Button>
+							<Flipper flipKey={collaboratorsListOpen} spring="veryGentle">
+								{collaboratorsListOpen ? (
+									<CollaboratorsDetails>
+										{fakePlan.collaborators.map((c, i) => (
+											<li key={`${c.id}-${i}`}>
+												Le Collaborateur, avecl'id <strong>{c.id}</strong>, et s'appellant{" "}
+												<strong>{`${c.firstname} ${c.lastname}`}</strong>, est installé sur le bureau avec l'id{" "}
+												<strong>{c.deskId}</strong>
+											</li>
+										))}
+									</CollaboratorsDetails>
+								) : (
+									""
+								)}
+							</Flipper>
+						</CollaBoratorsDetailsWrapper>
 					</Container>
 				</PresentationSection>
 			)}
@@ -133,8 +158,36 @@ const PlanInformations = styled.div`
 	grid-row: span 1;
 `
 const PlanDetails = styled.ul`
+	padding: 0;
+	margin: 0;
 	list-style-type: none;
 	& strong {
 		color: #00b0bd;
+	}
+`
+const CollaBoratorsDetailsWrapper = styled.div`
+	grid-column: span 2;
+	justify-self: center;
+	align-self: center;
+	& > button {
+		margin: 0 auto;
+	}
+`
+
+const fadeIn = keyframes`
+  0% {
+	  opacity: 0;
+	}
+	100% {
+		opacity: 1;
+  }
+`
+const CollaboratorsDetails = styled.ul`
+	list-style-type: none;
+	& strong {
+		color: #00b0bd;
+	}
+	& > li {
+		animation: 1s ${fadeIn} ease-in-out;
 	}
 `
