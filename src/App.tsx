@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "./App.css"
-import { BuildingsZonesSection } from "./components/buildings-zones-section"
-import { IBuilding } from "./components/building-card"
+import { BuildingsZonesSection } from "./components/building-zones/buildings-zones-section"
+import { IBuilding } from "./components/building-card/building-card"
 
 const FakeBuildingsData: IBuilding[] = [
 	{
