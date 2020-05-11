@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import "./index.css"
-import App from "./App"
+import { App } from "./App"
 import * as serviceWorker from "./serviceWorker"
 import "./fonts/BalooDa2-Bold.ttf"
 import "./fonts/BalooDa2-ExtraBold.ttf"
