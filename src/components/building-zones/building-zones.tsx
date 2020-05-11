@@ -5,8 +5,8 @@ import { IBuilding, BuildingCard } from "../building-card/building-card"
 
 export const BuildingZones = ({ buildings }: { buildings: IBuilding[] }) => {
 	console.log(buildings)
-	const [buildingHovered, setBuildingHovered] = useState<string>("")
-	const [buildingCardHovered, setBuildingCardHovered] = useState<string>("")
+	const [buildingHovered, setBuildingHovered] = useState<number | undefined>(undefined)
+	const [buildingCardHovered, setBuildingCardHovered] = useState<number | undefined>(undefined)
 	return (
 		<ZonesSVGWrapper>
 			<ZonesSVG

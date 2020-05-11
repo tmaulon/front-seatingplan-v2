@@ -11,18 +11,15 @@ export const ZonesSVG = ({
 	buildingCardHovered,
 }: {
 	zones: IZoneSVG[]
-	buildingHovered: string
-	setBuildingHovered: (id: React.SetStateAction<string>) => void
-	buildingCardHovered: string
+	buildingHovered: number | undefined
+	setBuildingHovered: (id: React.SetStateAction<number | undefined>) => void
+	buildingCardHovered: number | undefined
 }) => {
-	console.log("buildingHovered out of use effect: ", buildingHovered)
-
 	return (
 		<ZonesDrawingWrapper>
 			{zones.map(({ id, name }, index) => (
 				<Box key={`${id}-${index}`}>
 					<ZonesDrawingLink
-						id={id}
 						title={`Voir le bâtiment ${name}`}
 						href={`http://gooogle.com/?q=${id}`}
 						onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -32,7 +29,7 @@ export const ZonesSVG = ({
 							setBuildingHovered(id)
 						}}
 						onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-							setBuildingHovered("")
+							setBuildingHovered(undefined)
 						}}
 					>
 						<ZonesDrawing
@@ -82,7 +79,11 @@ const ZonesDrawingLink = styled.a`
 	justify-content: center;
 	align-items: center;
 `
-const ZonesDrawing = styled.svg<{ buildingId: string; buildingCardHovered: string; index: number }>`
+const ZonesDrawing = styled.svg<{
+	buildingId: number | undefined
+	buildingCardHovered: number | undefined
+	index: number
+}>`
 	height: 100%;
 	width: 100%;
 	& path {
