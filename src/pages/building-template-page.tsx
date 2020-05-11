@@ -6,6 +6,7 @@ import { BuildingCardDetails } from "../components/building-card/building-card-d
 import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
 import { BuildingProps, IBuilding } from "../domain/building"
+import { NavLink } from "react-router-dom"
 
 export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 	const fakeBuildings: IBuilding[] = FakeBuildingsData
@@ -55,7 +56,11 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 							<PlansList>
 								{fakeBuilding &&
 									fakeBuilding.plans.map((p, i) => (
-										<PlanItem key={`${p.id}-${i}`}>
+										<PlanItem
+											to={`/building/building-${fakeBuilding.id}/plan-${p.id}`}
+											title={`Voir plus en détail le plan : ${p.name}`}
+											key={`${p.id}-${i}`}
+										>
 											<img
 												src={`${p.picture ? p.picture.src : ""}`}
 												alt={`${p.picture ? p.picture.alt : `Plan du ${p.name}`}`}
@@ -84,6 +89,7 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 const PresentationSection = styled.section`
 	background-color: #282c34;
 	min-height: 100vh;
+	padding: 100px 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -113,6 +119,7 @@ const PictureWrapper = styled.div`
 	height: 100%;
 `
 const BuildingPicture = styled.img`
+	max-height: 400px;
 	height: 100%;
 	width: 100%;
 	object-fit: contain;
@@ -136,15 +143,21 @@ const PlansList = styled.div`
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: 1fr;
 	grid-auto-rows: 1fr;
+	gap: 50px;
+	padding-top: 25px;
 `
-const PlanItem = styled.div`
+const PlanItem = styled(NavLink)`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	text-decoration: none;
+	color: inherit;
+	font-size: 1rem;
 `
 const PlanTitle = styled.h3`
 	font-size: 1rem;
 	color: #00b0bd;
+	margin-top: 10px;
 `
