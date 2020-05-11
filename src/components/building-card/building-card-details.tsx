@@ -10,7 +10,7 @@ export const BuildingCardDetails = ({ building }: { building: IBuilding }) => {
 	useEffect(() => {
 		const path = document.location.pathname
 		if (path.startsWith("/building/")) setIsBuildingDetailPage(true)
-	})
+	}, [])
 
 	return (
 		<Details isBuildingDetailPage={isBuildingDetailPage}>
