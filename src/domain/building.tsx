@@ -37,3 +37,10 @@ export interface BuildingMatchParams {
 export interface BuildingProps extends RouteComponentProps<BuildingMatchParams> {
 	building: IBuilding
 }
+
+export interface PlanMatchParams extends BuildingMatchParams {
+	planId: string
+}
+export interface PlanProps extends RouteComponentProps<PlanMatchParams> {
+	plan: IPlan
+}
