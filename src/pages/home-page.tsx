@@ -10,12 +10,14 @@ export const HomePage = () => {
 	const [url, setUrl] = useState<string>("")
 	const { data, loading, error } = useCustomfetch(url)
 
-	const getAllUsersData = () => {
-		setUrl(`/demo/all`)
+	const getAllBuildingsData = () => {
+		// test fetching Github API
+		// setUrl(`https://api.github.com/users/tmaulon`)
+		setUrl(`/api/1.0/batiment`)
 	}
 
 	useEffect(() => {
-		getAllUsersData()
+		getAllBuildingsData()
 	}, [])
 
 	return (
@@ -39,7 +41,12 @@ export const HomePage = () => {
 					</LoadingWrapper>
 				)}
 				{!loading && data && <pre>{JSON.stringify(data, null, 2)}</pre>}
-				{!loading && error && <p>{error}</p>}
+				{!loading && error && (
+					<div>
+						<p>{"Erreur"}</p>
+						<pre>{error}</pre>
+					</div>
+				)}
 			</section>
 			<BuildingsZonesSection buildings={FakeBuildingsData} />
 		</>

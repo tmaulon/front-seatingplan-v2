@@ -14,17 +14,19 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 	const [url, setUrl] = useState<string>("")
 	const { data, loading, error } = useCustomfetch(url)
 
-	const getUserData = (userId: number) => {
-		//delete + 1 when back is done
-		setUrl(`/demo/user/${userId + 1}`)
+	const getAllBuildingsData = () => {
+		// test fetching Github API
+		// setUrl(`https://api.github.com/users/tmaulon`)
+		setUrl(`/api/1.0/batiment`)
 	}
+
+	useEffect(() => {
+		getAllBuildingsData()
+	}, [])
 
 	useEffect(() => {
 		setFakeBuilding(fakeBuildings.find(({ id }) => id === parseInt(match.params.buildingId)))
 	}, [fakeBuildings, match.params.buildingId])
-	useEffect(() => {
-		getUserData(parseInt(match.params.buildingId))
-	})
 
 	return (
 		<>

@@ -6,20 +6,57 @@ import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
 import { IBuilding, PlanProps, IPlan } from "../domain/building"
 import { Button } from "../components/button/button"
-import { Flipper, Flipped } from "react-flip-toolkit"
+import { motion } from "framer-motion"
+
+const animatedContainerWithStaggerChildrenVariants = {
+	hidden: {
+		opacity: 1,
+		scale: 0,
+		transition: {
+			when: "afterChildren",
+			staggerChildren: 0.1,
+		},
+		transitionEnd: {
+			display: "none",
+		},
+	},
+	visible: {
+		display: "block",
+		opacity: 1,
+		scale: 1,
+		transition: {
+			delay: 0.1,
+			when: "beforeChildren",
+			staggerChildren: 0.1,
+		},
+	},
+}
+
+const animatedItemStaggerChildVariants = {
+	hidden: { y: 20, opacity: 0 },
+	visible: {
+		y: 0,
+		opacity: 1,
+	},
+}
 
 export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 	const fakeBuildings: IBuilding[] = FakeBuildingsData
 	const [fakeBuilding, setFakeBuilding] = useState<IBuilding>()
 	const [fakePlan, setFakePlan] = useState<IPlan>()
+	const [collaboratorsListOpen, setCollaboratorsListOpen] = useState(false)
 	const [url, setUrl] = useState<string>("")
 	const { data, loading, error } = useCustomfetch(url)
-	const [collaboratorsListOpen, setCollaboratorsListOpen] = useState(false)
 
-	const getUserData = (userId: number) => {
-		//delete + 1 when back is done
-		setUrl(`/demo/user/${userId + 1}`)
+	const getAllBuildingsData = () => {
+		// test fetching Github API
+		// setUrl(`https://api.github.com/users/tmaulon`)
+		setUrl(`/api/1.0/batiment`)
 	}
+
+	useEffect(() => {
+		getAllBuildingsData()
+	}, [])
 
 	useEffect(() => {
 		if (!fakeBuilding) return
@@ -29,10 +66,6 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 	useEffect(() => {
 		setFakeBuilding(fakeBuildings.find(({ id }) => id === parseInt(match.params.buildingId)))
 	}, [fakeBuildings, match.params.buildingId])
-
-	useEffect(() => {
-		getUserData(parseInt(match.params.buildingId))
-	})
 
 	return (
 		<>
@@ -80,21 +113,19 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 									? `Refermer la liste des collaborateurs`
 									: `Voir les collaborateurs présents à cet étage`}
 							</Button>
-							<Flipper flipKey={collaboratorsListOpen} spring="veryGentle">
-								{collaboratorsListOpen ? (
-									<CollaboratorsDetails>
-										{fakePlan.collaborators.map((c, i) => (
-											<li key={`${c.id}-${i}`}>
-												Le Collaborateur, avecl'id <strong>{c.id}</strong>, et s'appellant{" "}
-												<strong>{`${c.firstname} ${c.lastname}`}</strong>, est installé sur le bureau avec l'id{" "}
-												<strong>{c.deskId}</strong>
-											</li>
-										))}
-									</CollaboratorsDetails>
-								) : (
-									""
-								)}
-							</Flipper>
+							<CollaboratorsDetails
+								variants={animatedContainerWithStaggerChildrenVariants}
+								initial={collaboratorsListOpen ? "visible" : "hidden"}
+								animate={collaboratorsListOpen ? "visible" : "hidden"}
+							>
+								{fakePlan.collaborators.map((c, i) => (
+									<motion.li key={`${c.id}-${i}`} variants={animatedItemStaggerChildVariants}>
+										Le Collaborateur, avecl'id <strong>{c.id}</strong>, et s'appellant{" "}
+										<strong>{`${c.firstname} ${c.lastname}`}</strong>, est installé sur le bureau avec l'id{" "}
+										<strong>{c.deskId}</strong>
+									</motion.li>
+								))}
+							</CollaboratorsDetails>
 						</CollaBoratorsDetailsWrapper>
 					</Container>
 				</PresentationSection>
@@ -182,12 +213,12 @@ const fadeIn = keyframes`
 		opacity: 1;
   }
 `
-const CollaboratorsDetails = styled.ul`
+const CollaboratorsDetails = styled(motion.ul)`
 	list-style-type: none;
 	& strong {
 		color: #00b0bd;
 	}
 	& > li {
-		animation: 1s ${fadeIn} ease-in-out;
+		/* animation: 1s ${fadeIn} ease-in-out; */
 	}
 `
