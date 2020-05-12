@@ -28,6 +28,7 @@ export interface IPlan {
 	bureaux: IDesk[]
 }
 export interface IFloor {
+	id: number
 	plans: IPlan[]
 }
 export interface IBuilding {
@@ -55,4 +56,11 @@ export interface PlanMatchParams extends BuildingMatchParams {
 }
 export interface PlanProps extends RouteComponentProps<PlanMatchParams> {
 	plan: IPlan
+}
+
+export interface FloorMatchParams extends PlanMatchParams {
+	floorId: string
+}
+export interface FloorProps extends RouteComponentProps<FloorMatchParams> {
+	floor: IFloor
 }
