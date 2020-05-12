@@ -10,18 +10,30 @@ export interface ICollaborator {
 	lastname: string
 	deskId: number
 }
-export interface IPlan {
+export interface IDesk {
 	id: number
 	name: string
+	floorsNumber: number
+	quantitePlaces: number
+	estOccupe: boolean
+	collaboratorsIds?: number[]
+}
+export interface IPlan {
+	id: number
+	nom: string
 	picture?: IPicture
-	collaborators: ICollaborator[]
+	collaborators?: ICollaborator[]
 	receptionMaxCapacity: number
 	currentReceptionCapacity: number
+	bureaux: IDesk[]
+}
+export interface IFloor {
+	plans: IPlan[]
 }
 export interface IBuilding {
 	id: number
-	name: string
-	plans: IPlan[]
+	nom: string
+	etages: IFloor[]
 	receptionMaxCapacity: number
 	currentReceptionCapacity: number
 	officesNumber: number
@@ -29,7 +41,7 @@ export interface IBuilding {
 	picture?: IPicture
 }
 
-export type IZoneSVG = Pick<IBuilding, "id" | "name">
+export type IZoneSVG = Pick<IBuilding, "id" | "nom">
 
 export interface BuildingMatchParams {
 	buildingId: string

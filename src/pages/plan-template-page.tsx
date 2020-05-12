@@ -83,18 +83,18 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 										: process.env.PUBLIC_URL + "/images/buildings/office-plan-placeholder.svg"
 								}`}
 								alt={`${
-									fakePlan.picture && fakePlan.picture.alt ? fakePlan.picture.alt : `Image du Plan ${fakePlan.name}`
+									fakePlan.picture && fakePlan.picture.alt ? fakePlan.picture.alt : `Image du Plan ${fakePlan.nom}`
 								}`}
 							/>
 						</PictureWrapper>
 						<PlanInformations>
-							<h1>{`Plan de ${fakePlan.name} du ${fakeBuilding.name}`}</h1>
+							<h1>{`Plan de ${fakePlan.nom} du ${fakeBuilding.nom}`}</h1>
 							<PlanDetails>
 								<li>
 									Id : <strong>{fakePlan.id}</strong>
 								</li>
 								<li>
-									Nom du plan : <strong>{fakePlan.name}</strong>.
+									Nom du plan : <strong>{fakePlan.nom}</strong>.
 								</li>
 								<li>
 									Nombre de collaborateurs à cet étage : <strong>{fakePlan.collaborators.length}</strong>.

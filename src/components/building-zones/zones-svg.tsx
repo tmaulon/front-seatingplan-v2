@@ -15,10 +15,10 @@ export const ZonesSVG = ({
 }) => {
 	return (
 		<ZonesDrawingWrapper>
-			{zones.map(({ id, name }, index) => (
+			{zones.map(({ id, nom }, index) => (
 				<Box key={`${id}-${index}`}>
 					<ZonesDrawingLink
-						title={`Voir le bâtiment ${name}`}
+						title={`Voir le bâtiment ${nom}`}
 						href={`http://gooogle.com/?q=${id}`}
 						onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
 							e.preventDefault()
@@ -37,7 +37,7 @@ export const ZonesSVG = ({
 							xmlns="http://www.w3.org/2000/svg"
 							xmlnsXlink="http://www.w3.org/1999/xlink"
 						>
-							<path aria-label={name} d="m 0 0 l 0 50 l 30 0 l 0 -50 l -30 0" />
+							<path aria-label={nom} d="m 0 0 l 0 50 l 30 0 l 0 -50 l -30 0" />
 						</ZonesDrawing>
 					</ZonesDrawingLink>
 				</Box>
