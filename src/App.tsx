@@ -1,108 +1,121 @@
-import React, { useState } from "react"
+import React from "react"
 import "./App.css"
-import { BrowserRouter, Route, NavLink } from "react-router-dom"
+import { BrowserRouter, Route } from "react-router-dom"
 import styled from "styled-components"
-import { Button } from "./components/button/button"
 import { HomePage } from "./pages/home-page"
 import { BuildingTemplatePage } from "./pages/building-template-page"
 import { PlanTemplatePage } from "./pages/plan-template-page"
 import { Footer } from "./components/footer/footer"
+import { Header } from "./components/header/header"
+import { motion } from "framer-motion"
 
-export const App = () => {
-	const [loggedIn, setLoggedIn] = useState<boolean>(false)
-
+export const AnimatedLayout: React.FC<{ title: string }> = ({ title, children }) => {
 	return (
-		<BrowserRouter>
-			<AppHeader>
-				<NavList>
-					<NavItem>
-						<StyledLink to="/" exact activeClassName="active">
-							Home
-						</StyledLink>
-					</NavItem>
-					<NavItem>
-						<Button buttonPrimary colorPrimary="#00b0bd" onClick={() => setLoggedIn(!loggedIn)}>
-							{loggedIn ? "logOut" : "LogIn"}
-						</Button>
-					</NavItem>
-				</NavList>
-			</AppHeader>
-			<StyledMain>
-				<Route path="/" exact component={HomePage} />
-				<Route path="/building/building-:buildingId/" exact component={BuildingTemplatePage} />
-				<Route path="/building/building-:buildingId/plan-:planId" exact component={PlanTemplatePage} />
-			</StyledMain>
-			<Footer />
-		</BrowserRouter>
+		<>
+			<AnimatedDiv
+				animate={{
+					opacity: [1, 1, 1, 0],
+					transitionEnd: {
+						y: "-100%",
+					},
+				}}
+				initial={{
+					opacity: 1,
+				}}
+				transition={{
+					times: [0, 0.25, 0.75, 1],
+					duration: 3,
+					ease: "easeInOut",
+				}}
+			/>
+			<AnimatedContentWrapper
+				animate={{
+					opacity: [0, 1, 1, 0],
+					transitionEnd: {
+						y: "-100%",
+					},
+				}}
+				initial={{ opacity: 0 }}
+				transition={{
+					times: [0, 0.25, 0.75, 1],
+					duration: 2,
+					ease: "easeInOut",
+				}}
+			>
+				<TitleWrapper>
+					<StyledTitle>{title}</StyledTitle>
+				</TitleWrapper>
+				{children}
+			</AnimatedContentWrapper>
+		</>
 	)
 }
-const AppHeader = styled.header`
-	background-color: #16191d;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
-	position: fixed;
-	width: 100%;
+
+const AnimatedDiv = styled(motion.div)`
+	display: block;
+	background-color: #fff;
+	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
-	z-index: 10;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
 `
-const NavList = styled.ul`
-	list-style-type: none;
+const AnimatedContentWrapper = styled(motion.div)`
 	display: flex;
-	flex-direction: column;
-	padding: 20px;
-	margin: 0;
-	@media screen and (min-width: 1024px) {
-		flex-direction: row;
-	}
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	z-index: 1000;
 `
-const NavItem = styled.li`
-	margin: 0;
-	padding: 0;
-	margin: 0;
-	&:not(:last-child) {
-		@media screen and (min-width: 1024px) {
-			margin: 0 30px 0 0;
-		}
-	}
+const TitleWrapper = styled.div`
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `
-const StyledLink = styled(NavLink)`
-	color: #fff;
-	padding: 10px;
-	text-decoration: none;
-	position: relative;
-	transition: color 0.3s ease-out;
+const StyledTitle = styled.h1`
+	height: auto;
+	margin: 0 auto;
+`
 
-	&::after {
-		content: "";
-		display: block;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		width: 100%;
-		height: 4px;
-		border-radius: 4px;
-		background-color: #fff;
-		transform: scaleX(0.2);
-		transform-origin: center;
-		transition: transform 0.3s ease-out, background-color 0.3s ease-out;
-	}
-	&:hover,
-	&:focus,
-	&.active {
-		color: #00b0bd;
-		&::after {
-			transform: scaleX(1);
-			background-color: #00b0bd;
-		}
-	}
-`
+export const openingHomePageAnimationsVariants = {
+	hidden: {
+		opacity: 0,
+		display: "none",
+	},
+	visibleContent: {
+		opacity: 1,
+		display: "block",
+	},
+	visible: {
+		opacity: 1,
+		display: "flex",
+	},
+}
+
+export const App = () => {
+	return (
+		<>
+			<BrowserRouter>
+				<Route path="/" exact component={() => AnimatedLayout({ title: "Seating Plan" })} />
+				<Header isHomePage={window.location.pathname === "/"} />
+				<StyledMain>
+					<Route path="/" exact component={HomePage} />
+					<Route path="/building/building-:buildingId/" exact component={BuildingTemplatePage} />
+					<Route path="/building/building-:buildingId/plan-:planId" exact component={PlanTemplatePage} />
+				</StyledMain>
+				<Footer isHomePage={window.location.pathname === "/"} />
+			</BrowserRouter>
+		</>
+	)
+}
 const StyledMain = styled.main`
 	padding-top: 8vh;
 `

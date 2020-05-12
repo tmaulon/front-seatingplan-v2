@@ -47,6 +47,7 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 	const [collaboratorsListOpen, setCollaboratorsListOpen] = useState(false)
 	const [url, setUrl] = useState<string>("")
 	const { data, loading, error } = useCustomfetch(url)
+	const [buildings, setBuildings] = useState<IBuilding[]>()
 
 	const getAllBuildingsData = () => {
 		// test fetching Github API
@@ -56,7 +57,9 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 
 	useEffect(() => {
 		getAllBuildingsData()
-	}, [])
+		if (!data) return
+		setBuildings(data)
+	}, [data])
 
 	useEffect(() => {
 		if (!fakeBuilding) return
@@ -134,7 +137,7 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 						<p>Loading ...</p>
 					</LoadingWrapper>
 				)}
-				{!loading && data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+				{!loading && buildings && <pre>{JSON.stringify(buildings, null, 2)}</pre>}
 				{!loading && error && <p>{error}</p>}
 			</section>
 		</>

@@ -6,6 +6,8 @@ import { Container } from "../components/container/container"
 import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
 import { IBuilding } from "../domain/building"
+import { motion } from "framer-motion"
+import { openingHomePageAnimationsVariants } from "../App"
 
 export const HomePage = () => {
 	const [url, setUrl] = useState<string>("")
@@ -25,7 +27,16 @@ export const HomePage = () => {
 	}, [data])
 
 	return (
-		<>
+		<motion.div
+			variants={openingHomePageAnimationsVariants}
+			animate={"visibleContent"}
+			initial={"hidden"}
+			transition={{
+				delay: 3,
+				duration: 1,
+				ease: "easeInOut",
+			}}
+		>
 			<PresentationSection>
 				<Container>
 					<PictureWrapper>
@@ -55,9 +66,10 @@ export const HomePage = () => {
 			</section>
 			<BuildingsZonesSection buildings={FakeBuildingsData} />
 			{!loading && buildings && <BuildingsZonesSection buildings={buildings} />}
-		</>
+		</motion.div>
 	)
 }
+
 const PresentationSection = styled.section`
 	background-color: #282c34;
 	min-height: 100vh;

@@ -13,6 +13,7 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 	const [fakeBuilding, setFakeBuilding] = useState<IBuilding>()
 	const [url, setUrl] = useState<string>("")
 	const { data, loading, error } = useCustomfetch(url)
+	const [buildings, setBuildings] = useState<IBuilding[]>()
 
 	const getAllBuildingsData = () => {
 		// test fetching Github API
@@ -22,7 +23,9 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 
 	useEffect(() => {
 		getAllBuildingsData()
-	}, [])
+		if (!data) return
+		setBuildings(data)
+	}, [data])
 
 	useEffect(() => {
 		setFakeBuilding(fakeBuildings.find(({ id }) => id === parseInt(match.params.buildingId)))
@@ -86,7 +89,7 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 						<p>Loading ...</p>
 					</LoadingWrapper>
 				)}
-				{!loading && data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+				{!loading && buildings && <pre>{JSON.stringify(buildings, null, 2)}</pre>}
 				{!loading && error && <p>{error}</p>}
 			</section>
 		</>
