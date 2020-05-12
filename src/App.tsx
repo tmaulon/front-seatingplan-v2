@@ -8,6 +8,7 @@ import { PlanTemplatePage } from "./pages/plan-template-page"
 import { Footer } from "./components/footer/footer"
 import { Header } from "./components/header/header"
 import { motion } from "framer-motion"
+import { FloorTemplatePage } from "./pages/floor-template-page"
 
 export const AnimatedLayout: React.FC<{ title: string }> = ({ title, children }) => {
 	return (
@@ -109,6 +110,11 @@ export const App = () => {
 				<StyledMain>
 					<Route path="/" exact component={HomePage} />
 					<Route path="/building/building-:buildingId/" exact component={BuildingTemplatePage} />
+					<Route
+						path="/building/building-:buildingId/floor-:floorId/plan-:planId"
+						exact
+						component={FloorTemplatePage}
+					/>
 					<Route path="/building/building-:buildingId/plan-:planId" exact component={PlanTemplatePage} />
 				</StyledMain>
 				<Footer isHomePage={window.location.pathname === "/"} />
