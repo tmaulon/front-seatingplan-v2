@@ -12,7 +12,7 @@ export interface ICollaborator {
 }
 export interface IPlan {
 	id: number
-	name: string
+	nom: string
 	picture?: IPicture
 	collaborators: ICollaborator[]
 	receptionMaxCapacity: number
@@ -20,7 +20,7 @@ export interface IPlan {
 }
 export interface IBuilding {
 	id: number
-	name: string
+	nom: string
 	plans: IPlan[]
 	receptionMaxCapacity: number
 	currentReceptionCapacity: number
@@ -29,7 +29,7 @@ export interface IBuilding {
 	picture?: IPicture
 }
 
-export type IZoneSVG = Pick<IBuilding, "id" | "name">
+export type IZoneSVG = Pick<IBuilding, "id" | "nom">
 
 export interface BuildingMatchParams {
 	buildingId: string

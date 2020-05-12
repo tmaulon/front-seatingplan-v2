@@ -3,11 +3,11 @@ import { IBuilding } from "../domain/building"
 export const FakeBuildingsData: IBuilding[] = [
 	{
 		id: 0,
-		name: "Bâtiment 1",
+		nom: "Bâtiment 1",
 		plans: [
 			{
 				id: 0,
-				name: "RDC",
+				nom: "RDC",
 				picture: {
 					src: "",
 					alt: "Plan du RDC",
@@ -115,7 +115,7 @@ export const FakeBuildingsData: IBuilding[] = [
 			},
 			{
 				id: 1,
-				name: "1er Etage",
+				nom: "1er Etage",
 				picture: {
 					src: "",
 					alt: "Plan du 1er Etage",
@@ -223,7 +223,7 @@ export const FakeBuildingsData: IBuilding[] = [
 			},
 			{
 				id: 2,
-				name: "2nd Etage",
+				nom: "2nd Etage",
 				picture: {
 					src: "",
 					alt: "Plan du 2nd Etage",
@@ -331,7 +331,7 @@ export const FakeBuildingsData: IBuilding[] = [
 			},
 			{
 				id: 3,
-				name: "3ème Etage",
+				nom: "3ème Etage",
 				picture: {
 					src: "",
 					alt: "Plan du 3ème Etage",
@@ -449,11 +449,11 @@ export const FakeBuildingsData: IBuilding[] = [
 	},
 	{
 		id: 1,
-		name: "Bâtiment 2",
+		nom: "Bâtiment 2",
 		plans: [
 			{
 				id: 0,
-				name: "RDC",
+				nom: "RDC",
 				picture: {
 					src: "",
 					alt: "Plan du RDC",
@@ -561,7 +561,7 @@ export const FakeBuildingsData: IBuilding[] = [
 			},
 			{
 				id: 1,
-				name: "1er Etage",
+				nom: "1er Etage",
 				picture: {
 					src: "",
 					alt: "Plan du 1er Etage",
@@ -669,7 +669,7 @@ export const FakeBuildingsData: IBuilding[] = [
 			},
 			{
 				id: 2,
-				name: "2nd Etage",
+				nom: "2nd Etage",
 				picture: {
 					src: "",
 					alt: "Plan du 2nd Etage",
@@ -777,7 +777,7 @@ export const FakeBuildingsData: IBuilding[] = [
 			},
 			{
 				id: 3,
-				name: "3ème Etage",
+				nom: "3ème Etage",
 				picture: {
 					src: "",
 					alt: "Plan du 3ème Etage",

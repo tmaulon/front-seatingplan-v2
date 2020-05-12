@@ -18,7 +18,7 @@ const SmallBuildingCard = ({
 	index: number
 	isOpen: boolean
 }) => {
-	const { id, name, picture } = building
+	const { id, nom, picture } = building
 	return (
 		<Flipped flipId="animatedBuildingCardWrapper" transformOrigin={"top"}>
 			<CollapsedZoneLink id={`list-${id}`}>
@@ -26,7 +26,7 @@ const SmallBuildingCard = ({
 					<Head>
 						<HeadTextWrapper>
 							<HeadLabel>Nom du Bâtiment</HeadLabel>
-							<HeadOutput>{name}</HeadOutput>
+							<HeadOutput>{nom}</HeadOutput>
 						</HeadTextWrapper>
 
 						<Flipper flipKey={hovered} spring="veryGentle">
@@ -53,7 +53,7 @@ const SmallBuildingCard = ({
 }
 
 const ExpandedBuildingCard = ({ building, index, isOpen }: { building: IBuilding; index: number; isOpen: boolean }) => {
-	const { id, name, picture } = building
+	const { id, nom, picture } = building
 	return (
 		<Flipped flipId="animatedBuildingCardWrapper" transformOrigin={"top"}>
 			<ExpandedZoneLink id={`list-${id}`}>
@@ -61,7 +61,7 @@ const ExpandedBuildingCard = ({ building, index, isOpen }: { building: IBuilding
 					<Head>
 						<HeadTextWrapper>
 							<HeadLabel>Nom du Bâtiment</HeadLabel>
-							<HeadOutput>{name}</HeadOutput>
+							<HeadOutput>{nom}</HeadOutput>
 						</HeadTextWrapper>
 
 						<PictureWrapper index={index} isOpen={isOpen}>
@@ -84,7 +84,7 @@ const ExpandedBuildingCard = ({ building, index, isOpen }: { building: IBuilding
 				<AsideArrowWrapper
 					to={`/building/building-${id}`}
 					id={`list-${id}`}
-					title={`Enter in Building : ${name}`}
+					title={`Enter in Building : ${nom}`}
 					index={index}
 				>
 					>
