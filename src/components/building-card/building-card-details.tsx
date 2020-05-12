@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import { IBuilding, IPlan } from "../../domain/building"
+import { IBuilding, IPlan, IFloor } from "../../domain/building"
 
 export const BuildingCardDetails = ({ building }: { building: IBuilding }) => {
 	const [isBuildingDetailPage, setIsBuildingDetailPage] = useState(false)
-	const { plans, receptionMaxCapacity, currentReceptionCapacity, officesNumber, occupancyStatistics } = building
-	const getTotalCollaborators = (plans: IPlan[]) => plans.map((p) => p.collaborators.length).reduce((a, b) => a + b)
+	const { etages, receptionMaxCapacity, currentReceptionCapacity, officesNumber, occupancyStatistics } = building
+	const getTotalCollaborators = (etages: IFloor[]) => etages.map((e) => e.plans.map((p) => p.currentReceptionCapacity))
+	console.log("collaborateurs dans le bâtiment : ", getTotalCollaborators(etages))
+
+	// const getTotalCollaborators = (etages: IFloor[]) =>
+	// 	etages.map((e) => e.plans.map((p) => p.currentReceptionCapacity)).reduce((a, b) => a + b)
 
 	useEffect(() => {
 		const path = document.location.pathname
@@ -17,12 +21,12 @@ export const BuildingCardDetails = ({ building }: { building: IBuilding }) => {
 			<Detail>
 				<DetailLabel>Nombre d'étages</DetailLabel>
 
-				<DetailOutput>{plans.length}</DetailOutput>
+				<DetailOutput>{etages.length}</DetailOutput>
 			</Detail>
 			<Detail>
 				<DetailLabel>Nombre de Collabrateurs</DetailLabel>
 
-				<DetailOutput>{getTotalCollaborators(plans)}</DetailOutput>
+				<DetailOutput>{getTotalCollaborators(etages)}</DetailOutput>
 			</Detail>
 			<Detail>
 				<DetailLabel>Capacité Max d'acceuil</DetailLabel>
