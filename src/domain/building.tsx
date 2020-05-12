@@ -10,18 +10,31 @@ export interface ICollaborator {
 	lastname: string
 	deskId: number
 }
+export interface IDesk {
+	id: number
+	name: string
+	floorsNumber: number
+	quantitePlaces: number
+	estOccupe: boolean
+	collaboratorsIds?: number[]
+}
 export interface IPlan {
 	id: number
 	nom: string
 	picture?: IPicture
-	collaborators: ICollaborator[]
+	collaborators?: ICollaborator[]
 	receptionMaxCapacity: number
 	currentReceptionCapacity: number
+	bureaux: IDesk[]
+}
+export interface IFloor {
+	plans: IPlan[]
 }
 export interface IBuilding {
 	id: number
 	nom: string
-	plans: IPlan[]
+	etages: IFloor[]
+	plans?: IPlan[]
 	receptionMaxCapacity: number
 	currentReceptionCapacity: number
 	officesNumber: number
