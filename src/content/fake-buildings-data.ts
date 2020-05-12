@@ -6,6 +6,7 @@ export const FakeBuildingsData: IBuilding[] = [
 		nom: "Bâtiment 1",
 		etages: [
 			{
+				id: 0,
 				plans: [
 					{
 						id: 0,
@@ -248,9 +249,10 @@ export const FakeBuildingsData: IBuilding[] = [
 				],
 			},
 			{
+				id: 1,
 				plans: [
 					{
-						id: 1,
+						id: 0,
 						nom: "1er Etage",
 						picture: {
 							src: "",
@@ -490,9 +492,10 @@ export const FakeBuildingsData: IBuilding[] = [
 				],
 			},
 			{
+				id: 2,
 				plans: [
 					{
-						id: 2,
+						id: 0,
 						nom: "2nd Etage",
 						picture: {
 							src: "",
@@ -732,9 +735,10 @@ export const FakeBuildingsData: IBuilding[] = [
 				],
 			},
 			{
+				id: 3,
 				plans: [
 					{
-						id: 3,
+						id: 0,
 						nom: "3ème Etage",
 						picture: {
 							src: "",
@@ -988,6 +992,7 @@ export const FakeBuildingsData: IBuilding[] = [
 		nom: "Bâtiment 2",
 		etages: [
 			{
+				id: 0,
 				plans: [
 					{
 						id: 0,
@@ -1230,9 +1235,10 @@ export const FakeBuildingsData: IBuilding[] = [
 				],
 			},
 			{
+				id: 1,
 				plans: [
 					{
-						id: 1,
+						id: 0,
 						nom: "1er Etage",
 						picture: {
 							src: "",
@@ -1472,9 +1478,10 @@ export const FakeBuildingsData: IBuilding[] = [
 				],
 			},
 			{
+				id: 2,
 				plans: [
 					{
-						id: 2,
+						id: 0,
 						nom: "2nd Etage",
 						picture: {
 							src: "",
@@ -1714,9 +1721,10 @@ export const FakeBuildingsData: IBuilding[] = [
 				],
 			},
 			{
+				id: 3,
 				plans: [
 					{
-						id: 3,
+						id: 0,
 						nom: "3ème Etage",
 						picture: {
 							src: "",
