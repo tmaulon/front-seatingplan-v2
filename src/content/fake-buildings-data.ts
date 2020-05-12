@@ -347,7 +347,7 @@ export const FakeBuildingsData: IBuilding[] = [
 						id: 49,
 						firstname: "John",
 						lastname: "Doe",
-						deskId: 149,
+						deskId: 49,
 					},
 					{
 						id: 50,

@@ -7,11 +7,14 @@ export const useCustomfetch = (url: string) => {
 
 	const customFetch = async (url: string) => {
 		try {
-			const response = await fetch(url)
+			const response = await fetch(url, {
+				mode: "no-cors",
+			})
 			const responseData = await response.json()
 			if (!responseData) {
 				return
 			} else {
+				console.log("fetched data : ", responseData)
 				setData(responseData)
 			}
 			setLoading(false)
