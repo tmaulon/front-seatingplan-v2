@@ -63,7 +63,12 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 
 	useEffect(() => {
 		if (!fakeBuilding) return
-		setFakePlan(fakeBuilding.plans.find(({ id }) => id === parseInt(match.params.planId)))
+		const allPlansInFloor = fakeBuilding.etages.map((etage) => etage.plans)
+		const planClicked = allPlansInFloor.map((plan) => plan.find((plan) => plan.id === 0))
+		console.log(planClicked)
+		setFakePlan(fakeBuilding.etages.map((etage) => etage.plans.map(plan => plan.find(plan => plan.id === parseInt(match.params.planId))))
+
+		// setFakePlan(fakeBuilding.etages.map(e => e.plans.find(({ id }) => id === parseInt(match.params.planId))))
 	}, [fakeBuilding, match.params.planId])
 
 	useEffect(() => {
