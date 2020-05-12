@@ -60,22 +60,22 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 							</p>
 							<PlansList>
 								{fakeBuilding &&
-									fakeBuilding.etages.map((e) =>
-										e.plans.map((p, i) => (
+									fakeBuilding.etages.map((etage, i) =>
+										etage.plans.map((plan, i) => (
 											<PlanItem
-												to={`/building/building-${fakeBuilding.id}/plan-${p.id}`}
-												title={`Voir plus en détail le plan : ${p.nom}`}
-												key={`${p.id}-${i}`}
+												to={`/building/building-${fakeBuilding.id}/floor-${etage.id}/plan-${plan.id}`}
+												title={`Voir plus en détail le plan : ${plan.nom}`}
+												key={`${plan.id}-${i}`}
 											>
 												<PlanPicture
 													src={`${
-														p.picture && p.picture.src
-															? process.env.PUBLIC_URL + p.picture.src
+														plan.picture && plan.picture.src
+															? process.env.PUBLIC_URL + plan.picture.src
 															: process.env.PUBLIC_URL + "/images/buildings/office-plan-placeholder.svg"
 													}`}
-													alt={`${p.picture ? p.picture.alt : `Plan du ${p.nom}`}`}
+													alt={`${plan.picture ? plan.picture.alt : `Plan du ${plan.nom}`}`}
 												/>
-												<PlanTitle>{p.nom}</PlanTitle>
+												<PlanTitle>{plan.nom}</PlanTitle>
 											</PlanItem>
 										))
 									)}
