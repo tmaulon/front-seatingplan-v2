@@ -110,12 +110,8 @@ export const App = () => {
 				<StyledMain>
 					<Route path="/" exact component={HomePage} />
 					<Route path="/building/building-:buildingId/" exact component={BuildingTemplatePage} />
-					<Route
-						path="/building/building-:buildingId/floor-:floorId/plan-:planId"
-						exact
-						component={FloorTemplatePage}
-					/>
-					<Route path="/building/building-:buildingId/plan-:planId" exact component={PlanTemplatePage} />
+					<Route path="/building/building-:buildingId/floor-:floorId" exact component={FloorTemplatePage} />
+					<Route path="/building/building-:buildingId/floor-:floorId/plan-:planId" exact component={PlanTemplatePage} />
 				</StyledMain>
 				<Footer isHomePage={window.location.pathname === "/"} />
 			</BrowserRouter>

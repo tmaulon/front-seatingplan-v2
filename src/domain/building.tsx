@@ -51,16 +51,16 @@ export interface BuildingProps extends RouteComponentProps<BuildingMatchParams> 
 	building: IBuilding
 }
 
-export interface PlanMatchParams extends BuildingMatchParams {
-	planId: string
-}
-export interface PlanProps extends RouteComponentProps<PlanMatchParams> {
-	plan: IPlan
-}
-
-export interface FloorMatchParams extends PlanMatchParams {
+export interface FloorMatchParams extends BuildingMatchParams {
 	floorId: string
 }
 export interface FloorProps extends RouteComponentProps<FloorMatchParams> {
 	floor: IFloor
+}
+
+export interface PlanMatchParams extends FloorMatchParams {
+	planId: string
+}
+export interface PlanProps extends RouteComponentProps<PlanMatchParams> {
+	plan: IPlan
 }

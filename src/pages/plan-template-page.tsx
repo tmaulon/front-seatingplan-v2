@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components"
 import { Container } from "../components/container/container"
 import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
-import { IBuilding, PlanProps, IPlan } from "../domain/building"
+import { IBuilding, PlanProps, IPlan, FloorProps } from "../domain/building"
 import { Button } from "../components/button/button"
 import { motion } from "framer-motion"
 
@@ -62,33 +62,27 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 	}, [data])
 
 	useEffect(() => {
-		if (!fakeBuilding) return
-		const allPlansInFloor = fakeBuilding.etages.map((etage) => etage.plans)
-		// const planClicked = allPlansInFloor.map((plan) => plan.find(({ id }) => id === parseInt(match.params.planId)))
-		// console.log(
-		// 	"plan clicked 1",
-		// 	fakeBuilding.etages.map((etage) => etage.plans).map((plan) => plan.find(({ id }) => id === 2))
-		// )
-		// setFakePlan()
-
-		// setFakePlan(fakeBuilding.etages.map(e => e.plans.find(({ id }) => id === parseInt(match.params.planId))))
-	}, [fakeBuilding, match.params.planId])
-
-	useEffect(() => {
 		setFakeBuilding(fakeBuildings.find(({ id }) => id === parseInt(match.params.buildingId)))
-	}, [fakeBuildings, match.params.buildingId])
 
-	/*
-	 old
-	useEffect(() => {
+		// before refactor
+		// if (!fakeBuilding) return
+		// const getSelectedFloor = fakeBuilding.etages.find((etage) => etage.id === parseInt(match.params.floorId))
+		// if (!getSelectedFloor) return
+		// const getSelectedFloorPlans = getSelectedFloor.plans
+		// if (!getSelectedFloorPlans) return
+		// const getSelectedPan = getSelectedFloorPlans.find(({ id }) => id === parseInt(match.params.planId))
+
+		// after refactor
+
 		if (!fakeBuilding) return
-		setFakePlan(fakeBuilding.plans.find(({ id }) => id === parseInt(match.params.planId)))
-	}, [fakeBuilding, match.params.planId])
+		const getSelectedPlan = fakeBuilding.etages
+			.find((etage) => etage.id === parseInt(match.params.floorId))
+			?.plans.find(({ id }) => id === parseInt(match.params.planId))
 
-	useEffect(() => {
-		setFakeBuilding(fakeBuildings.find(({ id }) => id === parseInt(match.params.buildingId)))
-	}, [fakeBuildings, match.params.buildingId])
-	 */
+		console.log("setlected plan ", getSelectedPlan)
+		if (!getSelectedPlan) return
+		setFakePlan(getSelectedPlan)
+	}, [fakeBuilding, match.params.floorId, match.params.planId])
 
 	return (
 		<>
@@ -224,21 +218,9 @@ const CollaBoratorsDetailsWrapper = styled.div`
 		margin: 0 auto;
 	}
 `
-
-const fadeIn = keyframes`
-  0% {
-	  opacity: 0;
-	}
-	100% {
-		opacity: 1;
-  }
-`
 const CollaboratorsDetails = styled(motion.ul)`
 	list-style-type: none;
 	& strong {
 		color: #00b0bd;
-	}
-	& > li {
-		/* animation: 1s ${fadeIn} ease-in-out; */
 	}
 `

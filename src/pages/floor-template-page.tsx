@@ -4,9 +4,10 @@ import styled, { keyframes } from "styled-components"
 import { Container } from "../components/container/container"
 import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
-import { IBuilding, PlanProps, IPlan, FloorProps } from "../domain/building"
+import { IBuilding, PlanProps, IPlan, FloorProps, IFloor } from "../domain/building"
 import { Button } from "../components/button/button"
 import { motion } from "framer-motion"
+import { NavLink } from "react-router-dom"
 
 const animatedContainerWithStaggerChildrenVariants = {
 	hidden: {
@@ -43,7 +44,7 @@ const animatedItemStaggerChildVariants = {
 export const FloorTemplatePage: React.FC<FloorProps> = ({ match }) => {
 	const fakeBuildings: IBuilding[] = FakeBuildingsData
 	const [fakeBuilding, setFakeBuilding] = useState<IBuilding>()
-	const [fakePlan, setFakePlan] = useState<IPlan>()
+	const [fakeFloor, setFakeFloor] = useState<IFloor>()
 	const [collaboratorsListOpen, setCollaboratorsListOpen] = useState(false)
 	const [url, setUrl] = useState<string>("")
 	const { data, loading, error } = useCustomfetch(url)
@@ -64,83 +65,35 @@ export const FloorTemplatePage: React.FC<FloorProps> = ({ match }) => {
 	useEffect(() => {
 		setFakeBuilding(fakeBuildings.find(({ id }) => id === parseInt(match.params.buildingId)))
 
-		// before refactor
-		// if (!fakeBuilding) return
-		// const getSelectedFloor = fakeBuilding.etages.find((etage) => etage.id === parseInt(match.params.floorId))
-		// if (!getSelectedFloor) return
-		// const getSelectedFloorPlans = getSelectedFloor.plans
-		// if (!getSelectedFloorPlans) return
-		// const getSelectedPan = getSelectedFloorPlans.find(({ id }) => id === parseInt(match.params.planId))
-
-		// after refactor
-
 		if (!fakeBuilding) return
-		const getSelectedPlan = fakeBuilding.etages
-			.find((etage) => etage.id === parseInt(match.params.floorId))
-			?.plans.find(({ id }) => id === parseInt(match.params.planId))
+		const getSelectedFloor = fakeBuilding.etages.find((etage) => etage.id === parseInt(match.params.floorId))
 
-		console.log("setlected plan ", getSelectedPlan)
-		if (!getSelectedPlan) return
-		setFakePlan(getSelectedPlan)
-	}, [fakeBuilding, match.params.floorId, match.params.planId])
+		console.log("setlected plan ", getSelectedFloor)
+		if (!getSelectedFloor) return
+		setFakeFloor(getSelectedFloor)
+	}, [fakeBuilding, match.params.floorId])
 
 	return (
 		<>
-			{fakePlan && fakeBuilding && (
+			{fakeFloor && fakeBuilding && (
 				<PresentationSection>
 					<Container>
-						<PictureWrapper>
-							<BuildingPicture
-								src={`${
-									fakePlan.picture && fakePlan.picture.src
-										? process.env.PUBLIC_URL + fakePlan.picture.src
-										: process.env.PUBLIC_URL + "/images/buildings/office-plan-placeholder.svg"
-								}`}
-								alt={`${
-									fakePlan.picture && fakePlan.picture.alt ? fakePlan.picture.alt : `Image du Plan ${fakePlan.nom}`
-								}`}
-							/>
-						</PictureWrapper>
-						<PlanInformations>
-							<h1>{`Plan de ${fakePlan.nom} du ${fakeBuilding.nom}`}</h1>
-							<PlanDetails>
+						<h1>Vous êtes à l'étage : {fakeFloor.id}</h1>
+						<p>
+							Vous pouvez voir {fakeFloor.plans.length} plan{fakeFloor.plans.length > 1 ? "s." : "."}
+						</p>
+						<ul>
+							{fakeFloor.plans.map((plan, i) => (
 								<li>
-									Id : <strong>{fakePlan.id}</strong>
+									<NavLink
+										title={`Voir le plan ${plan.nom}`}
+										to={`/building/building-${fakeBuilding.id}/floor-${fakeFloor.id}/plan-${plan.id}`}
+									>
+										Voir le plan {plan.nom}
+									</NavLink>
 								</li>
-								<li>
-									Nom du plan : <strong>{fakePlan.nom}</strong>.
-								</li>
-								<li>
-									Nombre de collaborateurs à cet étage : <strong>{fakePlan?.collaborators?.length}</strong>.
-								</li>
-								<li>
-									Peut accueillir <strong>{fakePlan.receptionMaxCapacity}</strong> bureaux.
-								</li>
-								<li>
-									Est actuellement agencé pour contenir <strong>{fakePlan.currentReceptionCapacity}</strong> bureaux.
-								</li>
-							</PlanDetails>
-						</PlanInformations>
-						<CollaBoratorsDetailsWrapper>
-							<Button onClick={() => setCollaboratorsListOpen(!collaboratorsListOpen)}>
-								{collaboratorsListOpen
-									? `Refermer la liste des collaborateurs`
-									: `Voir les collaborateurs présents à cet étage`}
-							</Button>
-							<CollaboratorsDetails
-								variants={animatedContainerWithStaggerChildrenVariants}
-								initial={collaboratorsListOpen ? "visible" : "hidden"}
-								animate={collaboratorsListOpen ? "visible" : "hidden"}
-							>
-								{fakePlan?.collaborators?.map((c, i) => (
-									<motion.li key={`${c.id}-${i}`} variants={animatedItemStaggerChildVariants}>
-										Le Collaborateur, avecl'id <strong>{c.id}</strong>, et s'appellant{" "}
-										<strong>{`${c.firstname} ${c.lastname}`}</strong>, est installé sur le bureau avec l'id{" "}
-										<strong>{c.deskId}</strong>
-									</motion.li>
-								))}
-							</CollaboratorsDetails>
-						</CollaBoratorsDetailsWrapper>
+							))}
+						</ul>
 					</Container>
 				</PresentationSection>
 			)}
