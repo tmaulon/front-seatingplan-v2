@@ -63,8 +63,12 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 											title={`Voir plus en détail le plan : ${p.name}`}
 											key={`${p.id}-${i}`}
 										>
-											<img
-												src={`${p.picture ? p.picture.src : ""}`}
+											<PlanPicture
+												src={`${
+													p.picture && p.picture.src
+														? process.env.PUBLIC_URL + p.picture.src
+														: process.env.PUBLIC_URL + "/images/buildings/office-plan-placeholder.svg"
+												}`}
 												alt={`${p.picture ? p.picture.alt : `Plan du ${p.name}`}`}
 											/>
 											<PlanTitle>{p.name}</PlanTitle>
@@ -157,6 +161,13 @@ const PlanItem = styled(NavLink)`
 	text-decoration: none;
 	color: inherit;
 	font-size: 1rem;
+`
+const PlanPicture = styled.img`
+	max-height: 200px;
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	object-position: center;
 `
 const PlanTitle = styled.h3`
 	font-size: 1rem;

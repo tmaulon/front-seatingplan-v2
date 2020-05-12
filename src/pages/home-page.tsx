@@ -5,10 +5,12 @@ import styled from "styled-components"
 import { Container } from "../components/container/container"
 import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
+import { IBuilding } from "../domain/building"
 
 export const HomePage = () => {
 	const [url, setUrl] = useState<string>("")
 	const { data, loading, error } = useCustomfetch(url)
+	const [buildings, setBuildings] = useState<IBuilding[]>()
 
 	const getAllBuildingsData = () => {
 		// test fetching Github API
@@ -18,14 +20,16 @@ export const HomePage = () => {
 
 	useEffect(() => {
 		getAllBuildingsData()
-	}, [])
+		if (!data) return
+		setBuildings(data)
+	}, [data])
 
 	return (
 		<>
 			<PresentationSection>
 				<Container>
 					<PictureWrapper>
-						<PlaceholderPicture src="http://placekitten.com/540/570" alt="Place Kitten" />
+						<PlaceholderPicture src={`${process.env.PUBLIC_URL}/images/workspace.svg`} alt="Place Kitten" />
 					</PictureWrapper>
 					<div>
 						<h1>Seating Plan App</h1>
@@ -40,7 +44,8 @@ export const HomePage = () => {
 						<p>Loading ...</p>
 					</LoadingWrapper>
 				)}
-				{!loading && data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+				{/* {!loading && data && <pre>{JSON.stringify(data, null, 2)}</pre>} */}
+				{!loading && buildings && <pre>{JSON.stringify(buildings, null, 2)}</pre>}
 				{!loading && error && (
 					<div>
 						<p>{"Erreur"}</p>
@@ -49,6 +54,7 @@ export const HomePage = () => {
 				)}
 			</section>
 			<BuildingsZonesSection buildings={FakeBuildingsData} />
+			{!loading && buildings && <BuildingsZonesSection buildings={buildings} />}
 		</>
 	)
 }
@@ -80,7 +86,7 @@ const PictureWrapper = styled.div`
 const PlaceholderPicture = styled.img`
 	height: 100%;
 	width: 100%;
-	object-fit: cover;
+	object-fit: contain;
 	object-position: center;
 `
 export const LoadingWrapper = styled.div`

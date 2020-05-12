@@ -6,6 +6,7 @@ import { Button } from "./components/button/button"
 import { HomePage } from "./pages/home-page"
 import { BuildingTemplatePage } from "./pages/building-template-page"
 import { PlanTemplatePage } from "./pages/plan-template-page"
+import { Footer } from "./components/footer/footer"
 
 export const App = () => {
 	const [loggedIn, setLoggedIn] = useState<boolean>(false)
@@ -31,9 +32,7 @@ export const App = () => {
 				<Route path="/building/building-:buildingId/" exact component={BuildingTemplatePage} />
 				<Route path="/building/building-:buildingId/plan-:planId" exact component={PlanTemplatePage} />
 			</StyledMain>
-			<footer>
-				<p>Seating Plan</p>
-			</footer>
+			<Footer />
 		</BrowserRouter>
 	)
 }

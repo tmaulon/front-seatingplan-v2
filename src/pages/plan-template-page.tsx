@@ -77,7 +77,7 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 								src={`${
 									fakePlan.picture && fakePlan.picture.src
 										? process.env.PUBLIC_URL + fakePlan.picture.src
-										: process.env.PUBLIC_URL + "/images/buildings/plan-placeholder.png"
+										: process.env.PUBLIC_URL + "/images/buildings/office-plan-placeholder.svg"
 								}`}
 								alt={`${
 									fakePlan.picture && fakePlan.picture.alt ? fakePlan.picture.alt : `Image du Plan ${fakePlan.name}`
@@ -86,9 +86,6 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 						</PictureWrapper>
 						<PlanInformations>
 							<h1>{`Plan de ${fakePlan.name} du ${fakeBuilding.name}`}</h1>
-							<p>
-								Bienvenu sur le plan {fakePlan.name} du bâtiment {fakeBuilding.name} :
-							</p>
 							<PlanDetails>
 								<li>
 									Id : <strong>{fakePlan.id}</strong>

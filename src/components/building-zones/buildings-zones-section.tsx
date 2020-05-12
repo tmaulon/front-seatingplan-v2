@@ -17,7 +17,6 @@ export const BuildingsZonesSection = ({ buildings }: { buildings: IBuilding[] })
 	)
 }
 const StyledSection = styled.section`
-	margin: 50px 0;
 	padding: 50px 0;
 	width: 100%;
 	background-color: #f6f7fb;
