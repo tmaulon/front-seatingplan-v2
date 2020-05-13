@@ -129,7 +129,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [0],
 							},
 							{
@@ -145,7 +144,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [1],
 							},
 							{
@@ -161,7 +159,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [2],
 							},
 							{
@@ -177,7 +174,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [3],
 							},
 							{
@@ -193,7 +189,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [4],
 							},
 							{
@@ -209,7 +204,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [5],
 							},
 							{
@@ -225,7 +219,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [6],
 							},
 							{
@@ -241,7 +234,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [7],
 							},
 							{
@@ -257,7 +249,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [8],
 							},
 							{
@@ -273,7 +264,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [9],
 							},
 							{
@@ -289,7 +279,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [10],
 							},
 							{
@@ -305,7 +294,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [11],
 							},
 							{
@@ -321,7 +309,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [12],
 							},
 							{
@@ -337,7 +324,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [13],
 							},
 							{
@@ -353,7 +339,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [14],
 							},
 							{
@@ -369,7 +354,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [15],
 							},
 						],
@@ -500,7 +484,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [16],
 							},
 							{
@@ -516,7 +499,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [17],
 							},
 							{
@@ -532,7 +514,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [18],
 							},
 							{
@@ -548,7 +529,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [19],
 							},
 							{
@@ -564,7 +544,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [20],
 							},
 							{
@@ -580,7 +559,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [21],
 							},
 							{
@@ -596,7 +574,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [22],
 							},
 							{
@@ -612,7 +589,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [23],
 							},
 							{
@@ -628,7 +604,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [24],
 							},
 							{
@@ -644,7 +619,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [25],
 							},
 							{
@@ -660,7 +634,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [27],
 							},
 							{
@@ -676,7 +649,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [28],
 							},
 							{
@@ -692,7 +664,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [29],
 							},
 							{
@@ -708,7 +679,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [30],
 							},
 							{
@@ -724,7 +694,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [31],
 							},
 							{
@@ -740,7 +709,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [32],
 							},
 						],
@@ -871,7 +839,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [33],
 							},
 							{
@@ -887,7 +854,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [34],
 							},
 							{
@@ -903,7 +869,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [35],
 							},
 							{
@@ -919,7 +884,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [36],
 							},
 							{
@@ -935,7 +899,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [37],
 							},
 							{
@@ -951,7 +914,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [38],
 							},
 							{
@@ -967,7 +929,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [39],
 							},
 							{
@@ -983,7 +944,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [40],
 							},
 							{
@@ -999,7 +959,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [41],
 							},
 							{
@@ -1015,7 +974,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [42],
 							},
 							{
@@ -1031,7 +989,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [43],
 							},
 							{
@@ -1047,7 +1004,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [44],
 							},
 							{
@@ -1063,7 +1019,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [45],
 							},
 							{
@@ -1079,7 +1034,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [46],
 							},
 							{
@@ -1095,7 +1049,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [47],
 							},
 							{
@@ -1111,7 +1064,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [48],
 							},
 						],
@@ -1242,7 +1194,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [49],
 							},
 							{
@@ -1258,7 +1209,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [50],
 							},
 							{
@@ -1274,7 +1224,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [51],
 							},
 							{
@@ -1290,7 +1239,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [52],
 							},
 							{
@@ -1306,7 +1254,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [53],
 							},
 							{
@@ -1322,7 +1269,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [54],
 							},
 							{
@@ -1338,7 +1284,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [55],
 							},
 							{
@@ -1354,7 +1299,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [56],
 							},
 							{
@@ -1370,7 +1314,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [57],
 							},
 							{
@@ -1386,7 +1329,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [58],
 							},
 							{
@@ -1402,7 +1344,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [59],
 							},
 							{
@@ -1418,7 +1359,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [60],
 							},
 							{
@@ -1434,7 +1374,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [61],
 							},
 							{
@@ -1450,7 +1389,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [62],
 							},
 							{
@@ -1466,7 +1404,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [63],
 							},
 							{
@@ -1482,7 +1419,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [64],
 							},
 						],
@@ -1627,7 +1563,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [0],
 							},
 							{
@@ -1643,7 +1578,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [1],
 							},
 							{
@@ -1659,7 +1593,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [2],
 							},
 							{
@@ -1675,7 +1608,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [3],
 							},
 							{
@@ -1691,7 +1623,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [4],
 							},
 							{
@@ -1707,7 +1638,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [5],
 							},
 							{
@@ -1723,7 +1653,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [6],
 							},
 							{
@@ -1739,7 +1668,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [7],
 							},
 							{
@@ -1755,7 +1683,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [8],
 							},
 							{
@@ -1771,7 +1698,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [9],
 							},
 							{
@@ -1787,7 +1713,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [10],
 							},
 							{
@@ -1803,7 +1728,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [11],
 							},
 							{
@@ -1819,7 +1743,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [12],
 							},
 							{
@@ -1835,7 +1758,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [13],
 							},
 							{
@@ -1851,7 +1773,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [14],
 							},
 							{
@@ -1867,7 +1788,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [15],
 							},
 						],
@@ -1998,7 +1918,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [16],
 							},
 							{
@@ -2014,7 +1933,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [17],
 							},
 							{
@@ -2030,7 +1948,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [18],
 							},
 							{
@@ -2046,7 +1963,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [19],
 							},
 							{
@@ -2062,7 +1978,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [20],
 							},
 							{
@@ -2078,7 +1993,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [21],
 							},
 							{
@@ -2094,7 +2008,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [22],
 							},
 							{
@@ -2110,7 +2023,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [23],
 							},
 							{
@@ -2126,7 +2038,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [24],
 							},
 							{
@@ -2142,7 +2053,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [25],
 							},
 							{
@@ -2158,7 +2068,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [27],
 							},
 							{
@@ -2174,7 +2083,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [28],
 							},
 							{
@@ -2190,7 +2098,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [29],
 							},
 							{
@@ -2206,7 +2113,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [30],
 							},
 							{
@@ -2222,7 +2128,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [31],
 							},
 							{
@@ -2238,7 +2143,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [32],
 							},
 						],
@@ -2369,7 +2273,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [33],
 							},
 							{
@@ -2385,7 +2288,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [34],
 							},
 							{
@@ -2401,7 +2303,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [35],
 							},
 							{
@@ -2417,7 +2318,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [36],
 							},
 							{
@@ -2433,7 +2333,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [37],
 							},
 							{
@@ -2449,7 +2348,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [38],
 							},
 							{
@@ -2465,7 +2363,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [39],
 							},
 							{
@@ -2481,7 +2378,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [40],
 							},
 							{
@@ -2497,7 +2393,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [41],
 							},
 							{
@@ -2513,7 +2408,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [42],
 							},
 							{
@@ -2529,7 +2423,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [43],
 							},
 							{
@@ -2545,7 +2438,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [44],
 							},
 							{
@@ -2561,7 +2453,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [45],
 							},
 							{
@@ -2577,7 +2468,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [46],
 							},
 							{
@@ -2593,7 +2483,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [47],
 							},
 							{
@@ -2609,7 +2498,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [48],
 							},
 						],
@@ -2740,7 +2628,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [49],
 							},
 							{
@@ -2756,7 +2643,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [50],
 							},
 							{
@@ -2772,7 +2658,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [51],
 							},
 							{
@@ -2788,7 +2673,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [52],
 							},
 							{
@@ -2804,7 +2688,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [53],
 							},
 							{
@@ -2820,7 +2703,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [54],
 							},
 							{
@@ -2836,7 +2718,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [55],
 							},
 							{
@@ -2852,7 +2733,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [56],
 							},
 							{
@@ -2868,7 +2748,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [57],
 							},
 							{
@@ -2884,7 +2763,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [58],
 							},
 							{
@@ -2900,7 +2778,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [59],
 							},
 							{
@@ -2916,7 +2793,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [60],
 							},
 							{
@@ -2932,7 +2808,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [61],
 							},
 							{
@@ -2948,7 +2823,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [62],
 							},
 							{
@@ -2964,7 +2838,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [63],
 							},
 							{
@@ -2980,7 +2853,6 @@ export const FakeBuildingsData: IBuilding[] = [
 										password: "myawesomepasswordhashed",
 									},
 								],
-								estOccupe: true,
 								collaboratorsIds: [64],
 							},
 						],

@@ -36,7 +36,7 @@ export const BuildingCardDetails = ({ building }: { building: IBuilding }) => {
 		etages
 			.map((e) =>
 				e.plans
-					.map((p) => p.bureaux.filter((bureau) => bureau.estOccupe).length)
+					.map((p) => p.bureaux.filter((bureau) => bureau.customers.length > 0).length)
 					.reduce((previousPLan, nextPlan) => previousPLan + nextPlan)
 			)
 			.reduce((previousFloor, nextFloor) => previousFloor + nextFloor)

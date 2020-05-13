@@ -164,9 +164,9 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 											peut contenir {bureau.quantitePlaces > 1 ? `${bureau.quantitePlaces} places` : `qu'une place`}. Il
 											est actuellement{" "}
 											<strong>
-												{bureau.estOccupe
+												{bureau.customers.length > 0
 													? `occupé par ${
-															bureau.collaboratorsIds.length > 1
+															bureau.customers.length > 1
 																? `les collaborateurs avec les id : ${bureau.collaboratorsIds.map(
 																		(collaboratorId) => ` ${collaboratorId} `
 																  )}.`
