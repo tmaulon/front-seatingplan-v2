@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import { IBuilding, IPlan, IFloor } from "../../domain/building"
+import { IBuilding, IFloor } from "../../domain/building"
 
 export const BuildingCardDetails = ({ building }: { building: IBuilding }) => {
 	const [isBuildingDetailPage, setIsBuildingDetailPage] = useState(false)

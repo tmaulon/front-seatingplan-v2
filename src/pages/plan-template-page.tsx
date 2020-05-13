@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 import "../App.css"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 import { Container } from "../components/container/container"
 import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
-import { IBuilding, PlanProps, IPlan, FloorProps } from "../domain/building"
+import { IBuilding, PlanProps, IPlan } from "../domain/building"
 import { Button } from "../components/button/button"
 import { motion } from "framer-motion"
 import { Layout } from "../components/layout/layout"
@@ -85,7 +85,7 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 		console.log("setlected plan ", getSelectedPlan)
 		if (!getSelectedPlan) return
 		setFakePlan(getSelectedPlan)
-	}, [fakeBuilding, match.params.floorId, match.params.planId])
+	}, [fakeBuildings, fakeBuilding, match.params.buildingId, match.params.floorId, match.params.planId])
 	console.log(
 		"ids des collaborateurs : ",
 		fakePlan?.bureaux[0].collaboratorsIds.map((c) => c)

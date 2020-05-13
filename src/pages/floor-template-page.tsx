@@ -1,53 +1,18 @@
 import React, { useState, useEffect } from "react"
 import "../App.css"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 import { Container } from "../components/container/container"
 import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
-import { IBuilding, PlanProps, IPlan, FloorProps, IFloor } from "../domain/building"
-import { Button } from "../components/button/button"
-import { motion } from "framer-motion"
+import { IBuilding, FloorProps, IFloor } from "../domain/building"
 import { NavLink } from "react-router-dom"
 import { Layout } from "../components/layout/layout"
-
-const animatedContainerWithStaggerChildrenVariants = {
-	hidden: {
-		opacity: 1,
-		scale: 0,
-		transition: {
-			when: "afterChildren",
-			staggerChildren: 0.1,
-		},
-		transitionEnd: {
-			display: "none",
-		},
-	},
-	visible: {
-		display: "block",
-		opacity: 1,
-		scale: 1,
-		transition: {
-			delay: 0.1,
-			when: "beforeChildren",
-			staggerChildren: 0.1,
-		},
-	},
-}
-
-const animatedItemStaggerChildVariants = {
-	hidden: { y: 20, opacity: 0 },
-	visible: {
-		y: 0,
-		opacity: 1,
-	},
-}
 
 export const FloorTemplatePage: React.FC<FloorProps> = (props) => {
 	const { match } = props
 	const fakeBuildings: IBuilding[] = FakeBuildingsData
 	const [fakeBuilding, setFakeBuilding] = useState<IBuilding>()
 	const [fakeFloor, setFakeFloor] = useState<IFloor>()
-	const [collaboratorsListOpen, setCollaboratorsListOpen] = useState(false)
 	const [url, setUrl] = useState<string>("")
 	const { data, loading, error } = useCustomfetch(url)
 	const [buildings, setBuildings] = useState<IBuilding[]>()
@@ -73,7 +38,7 @@ export const FloorTemplatePage: React.FC<FloorProps> = (props) => {
 		console.log("setlected plan ", getSelectedFloor)
 		if (!getSelectedFloor) return
 		setFakeFloor(getSelectedFloor)
-	}, [fakeBuilding, match.params.floorId])
+	}, [fakeBuildings, fakeBuilding, match.params.buildingId, match.params.floorId])
 
 	return (
 		<>
@@ -149,46 +114,6 @@ const PresentationSection = styled.section`
 		}
 	}
 `
-const PictureWrapper = styled.div`
-	grid-area: PlanPicture;
-	grid-column: span 1;
-	grid-row: span 1;
-	height: 100%;
-`
-const BuildingPicture = styled.img`
-	max-height: 400px;
-	height: 100%;
-	width: 100%;
-	object-fit: contain;
-	object-position: center;
-`
 const LoadingWrapper = styled.div`
 	margin-left: 10px;
-`
-const PlanInformations = styled.div`
-	grid-area: PlanInformations;
-	grid-column: span 1;
-	grid-row: span 1;
-`
-const PlanDetails = styled.ul`
-	padding: 0;
-	margin: 0;
-	list-style-type: none;
-	& strong {
-		color: #00b0bd;
-	}
-`
-const CollaBoratorsDetailsWrapper = styled.div`
-	grid-column: span 2;
-	justify-self: center;
-	align-self: center;
-	& > button {
-		margin: 0 auto;
-	}
-`
-const CollaboratorsDetails = styled(motion.ul)`
-	list-style-type: none;
-	& strong {
-		color: #00b0bd;
-	}
 `
