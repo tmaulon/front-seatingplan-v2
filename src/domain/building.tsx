@@ -36,10 +36,6 @@ export interface IBuilding {
 	id: number
 	nom: string
 	etages: IFloor[]
-	receptionMaxcapacity: number
-	currentReceptionCapacity: number
-	officesNumber: number
-	occupancyStatistics: number
 	picture?: IPicture
 }
 
