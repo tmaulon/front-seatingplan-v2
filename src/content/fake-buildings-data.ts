@@ -1426,10 +1426,6 @@ export const FakeBuildingsData: IBuilding[] = [
 				],
 			},
 		],
-		receptionMaxcapacity: 64,
-		currentReceptionCapacity: 64,
-		officesNumber: 64,
-		occupancyStatistics: 100,
 		picture: {
 			src: "/images/buildings/batiment-1.png",
 			alt: "Image du Bâtiment A",
@@ -2860,10 +2856,6 @@ export const FakeBuildingsData: IBuilding[] = [
 				],
 			},
 		],
-		receptionMaxcapacity: 64,
-		currentReceptionCapacity: 64,
-		officesNumber: 64,
-		occupancyStatistics: 100,
 		picture: {
 			src: "/images/buildings/batiment-2.png",
 			alt: "Image du Bâtiment B",
