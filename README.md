@@ -117,10 +117,23 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 |   |   |-- /layout
 |   |   |   |-- layout.tsx
 |   |-- /content
+|   |   |-- fake-buildings-data.ts
 |   |-- /domain
+|   |   |-- buildings.ts
 |   |-- /fonts
+|   |   |-- BalooDa2-Bold.ttf
+|   |   |-- BalooDa2-ExtraBold.ttf
+|   |   |-- BalooDa2-Medium.ttf
+|   |   |-- BalooDa2-Regular.ttf
+|   |   |-- BalooDa2-SemiBold.ttf
+|   |   |-- OFL.txt
 |   |-- /hooks
+|   |   |-- useCustomFetch.tsx
 |   |-- /pages
+|   |   |-- building-template-page.tsx
+|   |   |-- floor-template-page.tsx
+|   |   |-- home-page.tsx
+|   |   |-- plan-template-page.tsx
 |   |-- App.css
 |   |-- App.test.tsx
 |   |-- App.tsx
