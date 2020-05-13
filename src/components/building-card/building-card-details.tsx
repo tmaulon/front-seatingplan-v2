@@ -5,11 +5,12 @@ import { IBuilding, IFloor } from "../../domain/building"
 export const BuildingCardDetails = ({ building }: { building: IBuilding }) => {
 	const [isBuildingDetailPage, setIsBuildingDetailPage] = useState(false)
 	const { etages, receptionMaxCapacity, currentReceptionCapacity, officesNumber, occupancyStatistics } = building
-	const getTotalCollaborators = (etages: IFloor[]) => etages.map((e) => e.plans.map((p) => p.currentReceptionCapacity))
-	console.log("collaborateurs dans le bâtiment : ", getTotalCollaborators(etages))
-
-	// const getTotalCollaborators = (etages: IFloor[]) =>
-	// 	etages.map((e) => e.plans.map((p) => p.currentReceptionCapacity)).reduce((a, b) => a + b)
+	const getTotalCollaborators = (etages: IFloor[]) =>
+		etages
+			.map((e) =>
+				e.plans.map((p) => p.currentReceptionCapacity).reduce((previousPLan, nextPlan) => previousPLan + nextPlan)
+			)
+			.reduce((previousFloor, nextFloor) => previousFloor + nextFloor)
 
 	useEffect(() => {
 		const path = document.location.pathname
