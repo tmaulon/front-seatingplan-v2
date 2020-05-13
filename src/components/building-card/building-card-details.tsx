@@ -4,7 +4,7 @@ import { IBuilding, IFloor } from "../../domain/building"
 
 export const BuildingCardDetails = ({ building }: { building: IBuilding }) => {
 	const [isBuildingDetailPage, setIsBuildingDetailPage] = useState(false)
-	const { etages, receptionMaxcapacity, currentReceptionCapacity, officesNumber, occupancyStatistics } = building
+	const { etages } = building
 	// Todo : count how many desks are assigned
 	const getTotalCollaborators = (etages: IFloor[]) =>
 		etages
