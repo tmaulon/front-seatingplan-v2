@@ -3,9 +3,9 @@ import { NavLink } from "react-router-dom"
 import styled from "styled-components"
 import { Button } from "../button/button"
 import { motion } from "framer-motion"
-import { openingHomePageAnimationsVariants } from "../../App"
+import { openingHomePageAnimationsVariants } from "../layout/layout"
 
-export const Header = ({ isHomePage }: { isHomePage: boolean }) => {
+export const Header = ({ isHomePage }: { isHomePage?: boolean }) => {
 	const [loggedIn, setLoggedIn] = useState<boolean>(false)
 
 	return (

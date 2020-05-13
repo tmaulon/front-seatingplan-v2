@@ -7,8 +7,10 @@ import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
 import { BuildingProps, IBuilding } from "../domain/building"
 import { NavLink } from "react-router-dom"
+import { Layout } from "../components/layout/layout"
 
-export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
+export const BuildingTemplatePage: React.FC<BuildingProps> = (props) => {
+	const { match } = props
 	const fakeBuildings: IBuilding[] = FakeBuildingsData
 	const [fakeBuilding, setFakeBuilding] = useState<IBuilding>()
 	const [url, setUrl] = useState<string>("")
@@ -49,8 +51,8 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 							/>
 						</PictureWrapper>
 						<BuildingInformations>
-							<h1>{fakeBuilding.name}</h1>
-							<p>Bienvenu dans le bâtiment : {fakeBuilding.name}</p>
+							<h1>{fakeBuilding.nom}</h1>
+							<p>Bienvenu dans le bâtiment : {fakeBuilding.nom}</p>
 							<BuildingCardDetails building={fakeBuilding}></BuildingCardDetails>
 						</BuildingInformations>
 						<FloorsPlansWrapper>
@@ -60,23 +62,25 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 							</p>
 							<PlansList>
 								{fakeBuilding &&
-									fakeBuilding.plans.map((p, i) => (
-										<PlanItem
-											to={`/building/building-${fakeBuilding.id}/plan-${p.id}`}
-											title={`Voir plus en détail le plan : ${p.name}`}
-											key={`${p.id}-${i}`}
-										>
-											<PlanPicture
-												src={`${
-													p.picture && p.picture.src
-														? process.env.PUBLIC_URL + p.picture.src
-														: process.env.PUBLIC_URL + "/images/buildings/office-plan-placeholder.svg"
-												}`}
-												alt={`${p.picture ? p.picture.alt : `Plan du ${p.name}`}`}
-											/>
-											<PlanTitle>{p.name}</PlanTitle>
-										</PlanItem>
-									))}
+									fakeBuilding.etages.map((etage, i) =>
+										etage.plans.map((plan, i) => (
+											<PlanItem
+												to={`/building/building-${fakeBuilding.id}/floor-${etage.id}`}
+												title={`Voir plus en détail le plan : ${plan.nom}`}
+												key={`${plan.id}-${i}`}
+											>
+												<PlanPicture
+													src={`${
+														plan.picture && plan.picture.src
+															? process.env.PUBLIC_URL + plan.picture.src
+															: process.env.PUBLIC_URL + "/images/buildings/office-plan-placeholder.svg"
+													}`}
+													alt={`${plan.picture ? plan.picture.alt : `Plan du ${plan.nom}`}`}
+												/>
+												<PlanTitle>{plan.nom}</PlanTitle>
+											</PlanItem>
+										))
+									)}
 							</PlansList>
 						</FloorsPlansWrapper>
 					</Container>
@@ -95,6 +99,14 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 		</>
 	)
 }
+export const BuildingTemplatePageWithLayout: React.FC<BuildingProps> = ({ ...props }) => {
+	return (
+		<Layout>
+			<BuildingTemplatePage {...props} />
+		</Layout>
+	)
+}
+
 const PresentationSection = styled.section`
 	background-color: #282c34;
 	min-height: 100vh;

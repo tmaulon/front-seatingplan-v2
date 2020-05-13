@@ -4,9 +4,10 @@ import styled, { keyframes } from "styled-components"
 import { Container } from "../components/container/container"
 import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
-import { IBuilding, PlanProps, IPlan } from "../domain/building"
+import { IBuilding, PlanProps, IPlan, FloorProps } from "../domain/building"
 import { Button } from "../components/button/button"
 import { motion } from "framer-motion"
+import { Layout } from "../components/layout/layout"
 
 const animatedContainerWithStaggerChildrenVariants = {
 	hidden: {
@@ -40,11 +41,13 @@ const animatedItemStaggerChildVariants = {
 	},
 }
 
-export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
+export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
+	const { match } = props
 	const fakeBuildings: IBuilding[] = FakeBuildingsData
 	const [fakeBuilding, setFakeBuilding] = useState<IBuilding>()
 	const [fakePlan, setFakePlan] = useState<IPlan>()
 	const [collaboratorsListOpen, setCollaboratorsListOpen] = useState(false)
+	const [desksListOpen, setDesksListOpen] = useState(false)
 	const [url, setUrl] = useState<string>("")
 	const { data, loading, error } = useCustomfetch(url)
 	const [buildings, setBuildings] = useState<IBuilding[]>()
@@ -62,13 +65,31 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 	}, [data])
 
 	useEffect(() => {
-		if (!fakeBuilding) return
-		setFakePlan(fakeBuilding.plans.find(({ id }) => id === parseInt(match.params.planId)))
-	}, [fakeBuilding, match.params.planId])
-
-	useEffect(() => {
 		setFakeBuilding(fakeBuildings.find(({ id }) => id === parseInt(match.params.buildingId)))
-	}, [fakeBuildings, match.params.buildingId])
+
+		// before refactor
+		// if (!fakeBuilding) return
+		// const getSelectedFloor = fakeBuilding.etages.find((etage) => etage.id === parseInt(match.params.floorId))
+		// if (!getSelectedFloor) return
+		// const getSelectedFloorPlans = getSelectedFloor.plans
+		// if (!getSelectedFloorPlans) return
+		// const getSelectedPan = getSelectedFloorPlans.find(({ id }) => id === parseInt(match.params.planId))
+
+		// after refactor
+
+		if (!fakeBuilding) return
+		const getSelectedPlan = fakeBuilding.etages
+			.find((etage) => etage.id === parseInt(match.params.floorId))
+			?.plans.find(({ id }) => id === parseInt(match.params.planId))
+
+		console.log("setlected plan ", getSelectedPlan)
+		if (!getSelectedPlan) return
+		setFakePlan(getSelectedPlan)
+	}, [fakeBuilding, match.params.floorId, match.params.planId])
+	console.log(
+		"ids des collaborateurs : ",
+		fakePlan?.bureaux[0].collaboratorsIds.map((c) => c)
+	)
 
 	return (
 		<>
@@ -83,21 +104,21 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 										: process.env.PUBLIC_URL + "/images/buildings/office-plan-placeholder.svg"
 								}`}
 								alt={`${
-									fakePlan.picture && fakePlan.picture.alt ? fakePlan.picture.alt : `Image du Plan ${fakePlan.name}`
+									fakePlan.picture && fakePlan.picture.alt ? fakePlan.picture.alt : `Image du Plan ${fakePlan.nom}`
 								}`}
 							/>
 						</PictureWrapper>
 						<PlanInformations>
-							<h1>{`Plan de ${fakePlan.name} du ${fakeBuilding.name}`}</h1>
+							<h1>{`Plan de ${fakePlan.nom} du ${fakeBuilding.nom}`}</h1>
 							<PlanDetails>
 								<li>
 									Id : <strong>{fakePlan.id}</strong>
 								</li>
 								<li>
-									Nom du plan : <strong>{fakePlan.name}</strong>.
+									Nom du plan : <strong>{fakePlan.nom}</strong>.
 								</li>
 								<li>
-									Nombre de collaborateurs à cet étage : <strong>{fakePlan.collaborators.length}</strong>.
+									Nombre de collaborateurs à cet étage : <strong>{fakePlan?.collaborators?.length}</strong>.
 								</li>
 								<li>
 									Peut accueillir <strong>{fakePlan.receptionMaxCapacity}</strong> bureaux.
@@ -118,15 +139,48 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 								initial={collaboratorsListOpen ? "visible" : "hidden"}
 								animate={collaboratorsListOpen ? "visible" : "hidden"}
 							>
-								{fakePlan.collaborators.map((c, i) => (
-									<motion.li key={`${c.id}-${i}`} variants={animatedItemStaggerChildVariants}>
-										Le Collaborateur, avecl'id <strong>{c.id}</strong>, et s'appellant{" "}
-										<strong>{`${c.firstname} ${c.lastname}`}</strong>, est installé sur le bureau avec l'id{" "}
-										<strong>{c.deskId}</strong>
+								{fakePlan?.collaborators?.map((collaborator, i) => (
+									<motion.li key={`${collaborator.id}-${i}`} variants={animatedItemStaggerChildVariants}>
+										Le Collaborateur, avecl'id <strong>{collaborator.id}</strong>, et s'appellant{" "}
+										<strong>{`${collaborator.firstname} ${collaborator.lastname}`}</strong>, est installé sur le bureau
+										avec l'id <strong>{collaborator.deskId}</strong>
 									</motion.li>
 								))}
 							</CollaboratorsDetails>
 						</CollaBoratorsDetailsWrapper>
+						<DesksDetailsWrapper>
+							<Button onClick={() => setDesksListOpen(!desksListOpen)}>
+								{desksListOpen ? `Refermer la liste des bureaux` : `Voir le détail des bureaux présents à cet étage`}
+							</Button>
+							<DeskDetails
+								variants={animatedContainerWithStaggerChildrenVariants}
+								initial={desksListOpen ? "visible" : "hidden"}
+								animate={desksListOpen ? "visible" : "hidden"}
+							>
+								{fakePlan?.bureaux?.map((bureau, i) => (
+									<motion.li key={`${bureau.id}-${i}`} variants={animatedItemStaggerChildVariants}>
+										<p>
+											Le bureau, avecl'id <strong>{bureau.id}</strong>, et s'appellant <strong>{bureau.name}</strong>,
+											peut contenir {bureau.quantitePlaces > 1 ? `${bureau.quantitePlaces} places` : `qu'une place`}. Il
+											est actuellement{" "}
+											<strong>
+												{bureau.estOccupe
+													? `occupé par ${
+															bureau.collaboratorsIds.length > 1
+																? `les collaborateurs avec les id : ${bureau.collaboratorsIds.map(
+																		(collaboratorId) => ` ${collaboratorId} `
+																  )}.`
+																: `le collaborateur avec l'id : ${bureau.collaboratorsIds.map(
+																		(collaboratorId) => collaboratorId
+																  )}.`
+													  }`
+													: `inoccupé.`}
+											</strong>
+										</p>
+									</motion.li>
+								))}
+							</DeskDetails>
+						</DesksDetailsWrapper>
 					</Container>
 				</PresentationSection>
 			)}
@@ -141,6 +195,13 @@ export const PlanTemplatePage: React.FC<PlanProps> = ({ match }) => {
 				{!loading && error && <p>{error}</p>}
 			</section>
 		</>
+	)
+}
+export const PlanTemplatePageWithLayout: React.FC<PlanProps> = ({ ...props }) => {
+	return (
+		<Layout>
+			<PlanTemplatePage {...props} />
+		</Layout>
 	)
 }
 const PresentationSection = styled.section`
@@ -158,8 +219,10 @@ const PresentationSection = styled.section`
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-auto-rows: auto;
-		grid-template-rows: 1fr;
-		grid-template-areas: "PlanPicture PlanInformations";
+		grid-template-rows: 1fr auto;
+		grid-template-areas:
+			"PlanPicture PlanInformations"
+			"CollaboratorsInformations DesksInformations";
 		gap: 50px;
 		align-items: center;
 		@media screen and (min-width: 768px) {
@@ -197,28 +260,32 @@ const PlanDetails = styled.ul`
 	}
 `
 const CollaBoratorsDetailsWrapper = styled.div`
-	grid-column: span 2;
+	grid-column: span 1;
+	grid-area: CollaboratorsInformations;
 	justify-self: center;
-	align-self: center;
+	align-self: flex-start;
 	& > button {
 		margin: 0 auto;
 	}
-`
-
-const fadeIn = keyframes`
-  0% {
-	  opacity: 0;
-	}
-	100% {
-		opacity: 1;
-  }
 `
 const CollaboratorsDetails = styled(motion.ul)`
 	list-style-type: none;
 	& strong {
 		color: #00b0bd;
 	}
-	& > li {
-		/* animation: 1s ${fadeIn} ease-in-out; */
+`
+const DesksDetailsWrapper = styled.div`
+	grid-column: span 1;
+	grid-area: DesksInformations;
+	justify-self: center;
+	align-self: flex-start;
+	& > button {
+		margin: 0 auto;
+	}
+`
+const DeskDetails = styled(motion.ul)`
+	list-style-type: none;
+	& strong {
+		color: #00b0bd;
 	}
 `
