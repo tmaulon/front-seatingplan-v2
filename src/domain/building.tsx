@@ -17,7 +17,6 @@ export interface IDesk {
 	floorsNumber: number
 	quantitePlaces: number
 	customers: ICollaborator[]
-	collaboratorsIds: number[]
 }
 export interface IPlan {
 	id: number
