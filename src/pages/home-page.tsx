@@ -48,14 +48,20 @@ export const HomePage = () => {
 					</div>
 				</Container>
 			</PresentationSection>
+			<BuildingsZonesSection buildings={FakeBuildingsData} />
+			{loading && url && (
+				<LoadingWrapper>
+					<p>Loading ...</p>
+				</LoadingWrapper>
+			)}
+			{!loading && buildings && <BuildingsZonesSection buildings={buildings} />}
+
 			<section>
-				<h2>Fetch All User data</h2>
 				{loading && url && (
 					<LoadingWrapper>
 						<p>Loading ...</p>
 					</LoadingWrapper>
 				)}
-				{/* {!loading && data && <pre>{JSON.stringify(data, null, 2)}</pre>} */}
 				{!loading && buildings && <pre>{JSON.stringify(buildings, null, 2)}</pre>}
 				{!loading && error && (
 					<div>
@@ -64,8 +70,6 @@ export const HomePage = () => {
 					</div>
 				)}
 			</section>
-			<BuildingsZonesSection buildings={FakeBuildingsData} />
-			{!loading && buildings && <BuildingsZonesSection buildings={buildings} />}
 		</motion.div>
 	)
 }

@@ -22,16 +22,12 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = (props) => {
 		// setUrl(`https://api.github.com/users/tmaulon`)
 		setUrl(`/api/1.0/batiment`)
 	}
-
 	useEffect(() => {
+		setFakeBuilding(fakeBuildings.find(({ id }) => id === parseInt(match.params.buildingId)))
 		getAllBuildingsData()
 		if (!data) return
 		setBuildings(data)
-	}, [data])
-
-	useEffect(() => {
-		setFakeBuilding(fakeBuildings.find(({ id }) => id === parseInt(match.params.buildingId)))
-	}, [fakeBuildings, match.params.buildingId])
+	}, [fakeBuildings, match.params.buildingId, data])
 
 	return (
 		<>
@@ -87,7 +83,6 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = (props) => {
 				</PresentationSection>
 			)}
 			<section>
-				<h2>Fetch All User data</h2>
 				{loading && url && (
 					<LoadingWrapper>
 						<p>Loading ...</p>

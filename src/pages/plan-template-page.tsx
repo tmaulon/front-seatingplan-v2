@@ -52,14 +52,14 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 	const { data, loading, error } = useCustomfetch(url)
 	const [buildings, setBuildings] = useState<IBuilding[]>()
 
-	const getAllBuildingsData = () => {
+	const getPlansData = () => {
 		// test fetching Github API
 		// setUrl(`https://api.github.com/users/tmaulon`)
-		setUrl(`/api/1.0/batiment`)
+		setUrl(`/api/1.0/plan`)
 	}
 
 	useEffect(() => {
-		getAllBuildingsData()
+		getPlansData()
 		if (!data) return
 		setBuildings(data)
 	}, [data])
@@ -194,7 +194,6 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 				</PresentationSection>
 			)}
 			<section>
-				<h2>Fetch All User data</h2>
 				{loading && url && (
 					<LoadingWrapper>
 						<p>Loading ...</p>

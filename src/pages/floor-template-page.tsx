@@ -17,14 +17,14 @@ export const FloorTemplatePage: React.FC<FloorProps> = (props) => {
 	const { data, loading, error } = useCustomfetch(url)
 	const [buildings, setBuildings] = useState<IBuilding[]>()
 
-	const getAllBuildingsData = () => {
+	const getFloorData = () => {
 		// test fetching Github API
 		// setUrl(`https://api.github.com/users/tmaulon`)
-		setUrl(`/api/1.0/batiment`)
+		setUrl(`/api/1.0/etage`)
 	}
 
 	useEffect(() => {
-		getAllBuildingsData()
+		getFloorData()
 		if (!data) return
 		setBuildings(data)
 	}, [data])
@@ -70,7 +70,6 @@ export const FloorTemplatePage: React.FC<FloorProps> = (props) => {
 				</PresentationSection>
 			)}
 			<section>
-				<h2>Fetch All User data</h2>
 				{loading && url && (
 					<LoadingWrapper>
 						<p>Loading ...</p>
