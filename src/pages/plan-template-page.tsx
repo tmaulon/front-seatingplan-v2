@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Container } from "../components/container/container"
 import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
-import { IBuilding, PlanProps, IPlan, IFloor, ICollaborator, IDesk } from "../domain/building"
+import { IBuilding, PlanProps, IPlan } from "../domain/building"
 import { Button } from "../components/button/button"
 import { motion } from "framer-motion"
 import { Layout } from "../components/layout/layout"
@@ -94,9 +94,6 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 				(nextDeskCustomersLength, previousDeskCustomersLength) => nextDeskCustomersLength + previousDeskCustomersLength
 			)
 
-	const getCollaboratorDeskObject = (customer: ICollaborator, desks: IDesk[]) =>
-		desks.find(({ id }) => id === customer.deskId)
-
 	return (
 		<>
 			{fakePlan && fakeBuilding && (
@@ -153,21 +150,10 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 												<motion.li key={`${collaborator.id}-${i}`} variants={animatedItemStaggerChildVariants}>
 													Le Collaborateur, avecl'id <strong>{collaborator.id}</strong>, et s'appellant{" "}
 													<strong>{`${collaborator.firstName} ${collaborator.lastName}`}</strong>, est installé sur le
-													bureau s'appelant{" "}
-													<strong>
-														{getCollaboratorDeskObject(collaborator, fakePlan.bureaux) &&
-															getCollaboratorDeskObject.name}
-													</strong>
+													bureau s'appelant <strong>{bureau.name}</strong>
 												</motion.li>
 											))
 									)}
-								{/* { fakePlan.bureaux.customers.length > 0 && fakePlan.bureaux.customers.map((collaborator, i) => (
-									<motion.li key={`${collaborator.id}-${i}`} variants={animatedItemStaggerChildVariants}>
-										Le Collaborateur, avecl'id <strong>{collaborator.id}</strong>, et s'appellant{" "}
-										<strong>{`${collaborator.firstName} ${collaborator.lastName}`}</strong>, est installé sur le bureau
-										avec l'id <strong>{collaborator.deskId}</strong>
-									</motion.li>
-								))} */}
 							</CollaboratorsDetails>
 						</CollaBoratorsDetailsWrapper>
 						<DesksDetailsWrapper>
@@ -179,28 +165,29 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 								initial={desksListOpen ? "visible" : "hidden"}
 								animate={desksListOpen ? "visible" : "hidden"}
 							>
-								{fakePlan?.bureaux?.map((bureau, i) => (
-									<motion.li key={`${bureau.id}-${i}`} variants={animatedItemStaggerChildVariants}>
-										<p>
-											Le bureau, avecl'id <strong>{bureau.id}</strong>, et s'appellant <strong>{bureau.name}</strong>,
-											peut contenir {bureau.quantitePlaces > 1 ? `${bureau.quantitePlaces} places` : `qu'une place`}. Il
-											est actuellement{" "}
-											<strong>
-												{bureau.customers.length > 0
-													? `occupé par ${
-															bureau.customers.length > 1
-																? `les collaborateurs avec les id : ${bureau.collaboratorsIds.map(
-																		(collaboratorId) => ` ${collaboratorId} `
-																  )}.`
-																: `le collaborateur avec l'id : ${bureau.collaboratorsIds.map(
-																		(collaboratorId) => collaboratorId
-																  )}.`
-													  }`
-													: `inoccupé.`}
-											</strong>
-										</p>
-									</motion.li>
-								))}
+								{fakePlan.bureaux.length > 0 &&
+									fakePlan.bureaux.map((bureau, i) => (
+										<motion.li key={`${bureau.id}-${i}`} variants={animatedItemStaggerChildVariants}>
+											<p>
+												Le bureau, avecl'id <strong>{bureau.id}</strong>, et s'appellant <strong>{bureau.name}</strong>,
+												peut contenir {bureau.quantitePlaces > 1 ? `${bureau.quantitePlaces} places` : `qu'une place`}.
+												Il est actuellement{" "}
+												<strong>
+													{bureau.customers.length > 0
+														? `occupé par ${
+																bureau.customers.length > 1
+																	? `les collaborateurs avec s'appelant : ${bureau.customers.map(
+																			(customer) => ` ${customer.firstName} ${customer.lastName} `
+																	  )}.`
+																	: `le collaborateur s'appelant : ${bureau.customers.map(
+																			(customer) => `${customer.firstName} ${customer.lastName}`
+																	  )}.`
+														  }`
+														: `inoccupé.`}
+												</strong>
+											</p>
+										</motion.li>
+									))}
 							</DeskDetails>
 						</DesksDetailsWrapper>
 					</Container>
