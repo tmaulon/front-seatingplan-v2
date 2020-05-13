@@ -121,7 +121,7 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 									Nombre de collaborateurs à cet étage : <strong>{fakePlan?.collaborators?.length}</strong>.
 								</li>
 								<li>
-									Peut accueillir <strong>{fakePlan.receptionMaxCapacity}</strong> bureaux.
+									Peut accueillir <strong>{fakePlan.receptionMaxcapacity}</strong> bureaux.
 								</li>
 								<li>
 									Est actuellement agencé pour contenir <strong>{fakePlan.currentReceptionCapacity}</strong> bureaux.
@@ -142,7 +142,7 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 								{fakePlan?.collaborators?.map((collaborator, i) => (
 									<motion.li key={`${collaborator.id}-${i}`} variants={animatedItemStaggerChildVariants}>
 										Le Collaborateur, avecl'id <strong>{collaborator.id}</strong>, et s'appellant{" "}
-										<strong>{`${collaborator.firstname} ${collaborator.lastname}`}</strong>, est installé sur le bureau
+										<strong>{`${collaborator.firstName} ${collaborator.lastName}`}</strong>, est installé sur le bureau
 										avec l'id <strong>{collaborator.deskId}</strong>
 									</motion.li>
 								))}
