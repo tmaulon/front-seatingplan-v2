@@ -122,12 +122,12 @@ const PresentationSection = styled.section`
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-auto-rows: auto;
-		grid-template-rows: repeat(2, 1fr);
+		grid-template-rows: repeat(2, auto);
 		grid-template-areas:
 			"BuildingPicture BuildingInformations"
 			"FloorsPlansWrapper FloorsPlansWrapper";
 		gap: 50px;
-		align-items: center;
+		align-items: flex-start;
 		@media screen and (min-width: 768px) {
 			grid-template-columns: repeat(2, 1fr);
 		}

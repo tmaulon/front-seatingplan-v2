@@ -4,13 +4,45 @@ import { IBuilding, IFloor } from "../../domain/building"
 
 export const BuildingCardDetails = ({ building }: { building: IBuilding }) => {
 	const [isBuildingDetailPage, setIsBuildingDetailPage] = useState(false)
-	const { etages, receptionMaxCapacity, currentReceptionCapacity, officesNumber, occupancyStatistics } = building
+	const { etages } = building
+	// Todo : count how many desks are assigned
 	const getTotalCollaborators = (etages: IFloor[]) =>
 		etages
 			.map((e) =>
 				e.plans.map((p) => p.currentReceptionCapacity).reduce((previousPLan, nextPlan) => previousPLan + nextPlan)
 			)
 			.reduce((previousFloor, nextFloor) => previousFloor + nextFloor)
+
+	const getTotalReceptionMaxcapacity = (etages: IFloor[]) =>
+		etages
+			.map((e) =>
+				e.plans.map((p) => p.receptionMaxcapacity).reduce((previousPLan, nextPlan) => previousPLan + nextPlan)
+			)
+			.reduce((previousFloor, nextFloor) => previousFloor + nextFloor)
+
+	const getTotalCurrentReceptionCapacity = (etages: IFloor[]) =>
+		etages
+			.map((e) =>
+				e.plans.map((p) => p.currentReceptionCapacity).reduce((previousPLan, nextPlan) => previousPLan + nextPlan)
+			)
+			.reduce((previousFloor, nextFloor) => previousFloor + nextFloor)
+
+	const getTotalDesks = (etages: IFloor[]) =>
+		etages
+			.map((e) => e.plans.map((p) => p.bureaux.length).reduce((previousPLan, nextPlan) => previousPLan + nextPlan))
+			.reduce((previousFloor, nextFloor) => previousFloor + nextFloor)
+
+	const getTotalAssignedDesks = (etages: IFloor[]) =>
+		etages
+			.map((e) =>
+				e.plans
+					.map((p) => p.bureaux.filter((bureau) => bureau.customers.length > 0).length)
+					.reduce((previousPLan, nextPlan) => previousPLan + nextPlan)
+			)
+			.reduce((previousFloor, nextFloor) => previousFloor + nextFloor)
+
+	const getTotalOccupancyStatistics = (etages: IFloor[]) =>
+		(getTotalAssignedDesks(etages) / getTotalDesks(etages)) * 100
 
 	useEffect(() => {
 		const path = document.location.pathname
@@ -32,22 +64,24 @@ export const BuildingCardDetails = ({ building }: { building: IBuilding }) => {
 			<Detail>
 				<DetailLabel>Capacité Max d'acceuil</DetailLabel>
 
-				<DetailOutput>{receptionMaxCapacity}</DetailOutput>
+				<DetailOutput>{getTotalReceptionMaxcapacity(etages)}</DetailOutput>
 			</Detail>
 			<Detail>
 				<DetailLabel>Capacité d'acceuil actuelle</DetailLabel>
 
-				<DetailOutput>{currentReceptionCapacity}</DetailOutput>
+				<DetailOutput>{getTotalCurrentReceptionCapacity(etages)}</DetailOutput>
 			</Detail>
 			<Detail>
 				<DetailLabel>Nombre de Bureaux</DetailLabel>
 
-				<DetailOutput>{officesNumber}</DetailOutput>
+				<DetailOutput>{getTotalDesks(etages)}</DetailOutput>
+				{/* <DetailOutput>{officesNumber}</DetailOutput> */}
 			</Detail>
 			<Detail>
 				<DetailLabel>Statistiques d'occupation</DetailLabel>
 
-				<DetailOutput>{`${occupancyStatistics}%`}</DetailOutput>
+				<DetailOutput>{`${getTotalOccupancyStatistics(etages)}%`}</DetailOutput>
+				{/* <DetailOutput>{`${occupancyStatisctics}%`}</DetailOutput> */}
 			</Detail>
 		</Details>
 	)

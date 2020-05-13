@@ -6,24 +6,24 @@ export interface IPicture {
 }
 export interface ICollaborator {
 	id: number
-	firstname: string
-	lastname: string
-	deskId: number
+	firstName: string
+	lastName: string
+	password?: string
+	deskId?: number
 }
 export interface IDesk {
 	id: number
 	name: string
 	floorsNumber: number
 	quantitePlaces: number
-	estOccupe: boolean
-	collaboratorsIds: number[]
+	customers: ICollaborator[]
 }
 export interface IPlan {
 	id: number
 	nom: string
 	picture?: IPicture
 	collaborators?: ICollaborator[]
-	receptionMaxCapacity: number
+	receptionMaxcapacity: number
 	currentReceptionCapacity: number
 	bureaux: IDesk[]
 }
@@ -35,10 +35,6 @@ export interface IBuilding {
 	id: number
 	nom: string
 	etages: IFloor[]
-	receptionMaxCapacity: number
-	currentReceptionCapacity: number
-	officesNumber: number
-	occupancyStatistics: number
 	picture?: IPicture
 }
 

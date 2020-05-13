@@ -86,10 +86,13 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 		if (!getSelectedPlan) return
 		setFakePlan(getSelectedPlan)
 	}, [fakeBuildings, fakeBuilding, match.params.buildingId, match.params.floorId, match.params.planId])
-	console.log(
-		"ids des collaborateurs : ",
-		fakePlan?.bureaux[0].collaboratorsIds.map((c) => c)
-	)
+
+	const getTotalCollaboratorsInThisPlan = (plan: IPlan) =>
+		plan.bureaux
+			.map((bureau) => bureau.customers.length)
+			.reduce(
+				(nextDeskCustomersLength, previousDeskCustomersLength) => nextDeskCustomersLength + previousDeskCustomersLength
+			)
 
 	return (
 		<>
@@ -118,10 +121,10 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 									Nom du plan : <strong>{fakePlan.nom}</strong>.
 								</li>
 								<li>
-									Nombre de collaborateurs à cet étage : <strong>{fakePlan?.collaborators?.length}</strong>.
+									Nombre de collaborateurs à cet étage : <strong>{getTotalCollaboratorsInThisPlan(fakePlan)}</strong>.
 								</li>
 								<li>
-									Peut accueillir <strong>{fakePlan.receptionMaxCapacity}</strong> bureaux.
+									Peut accueillir <strong>{fakePlan.receptionMaxcapacity}</strong> bureaux.
 								</li>
 								<li>
 									Est actuellement agencé pour contenir <strong>{fakePlan.currentReceptionCapacity}</strong> bureaux.
@@ -139,13 +142,18 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 								initial={collaboratorsListOpen ? "visible" : "hidden"}
 								animate={collaboratorsListOpen ? "visible" : "hidden"}
 							>
-								{fakePlan?.collaborators?.map((collaborator, i) => (
-									<motion.li key={`${collaborator.id}-${i}`} variants={animatedItemStaggerChildVariants}>
-										Le Collaborateur, avecl'id <strong>{collaborator.id}</strong>, et s'appellant{" "}
-										<strong>{`${collaborator.firstname} ${collaborator.lastname}`}</strong>, est installé sur le bureau
-										avec l'id <strong>{collaborator.deskId}</strong>
-									</motion.li>
-								))}
+								{fakePlan.bureaux.length > 0 &&
+									fakePlan.bureaux.map(
+										(bureau) =>
+											bureau.customers.length > 0 &&
+											bureau.customers.map((collaborator, i) => (
+												<motion.li key={`${collaborator.id}-${i}`} variants={animatedItemStaggerChildVariants}>
+													Le Collaborateur, avecl'id <strong>{collaborator.id}</strong>, et s'appellant{" "}
+													<strong>{`${collaborator.firstName} ${collaborator.lastName}`}</strong>, est installé sur le
+													bureau s'appelant <strong>{bureau.name}</strong>
+												</motion.li>
+											))
+									)}
 							</CollaboratorsDetails>
 						</CollaBoratorsDetailsWrapper>
 						<DesksDetailsWrapper>
@@ -157,28 +165,29 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 								initial={desksListOpen ? "visible" : "hidden"}
 								animate={desksListOpen ? "visible" : "hidden"}
 							>
-								{fakePlan?.bureaux?.map((bureau, i) => (
-									<motion.li key={`${bureau.id}-${i}`} variants={animatedItemStaggerChildVariants}>
-										<p>
-											Le bureau, avecl'id <strong>{bureau.id}</strong>, et s'appellant <strong>{bureau.name}</strong>,
-											peut contenir {bureau.quantitePlaces > 1 ? `${bureau.quantitePlaces} places` : `qu'une place`}. Il
-											est actuellement{" "}
-											<strong>
-												{bureau.estOccupe
-													? `occupé par ${
-															bureau.collaboratorsIds.length > 1
-																? `les collaborateurs avec les id : ${bureau.collaboratorsIds.map(
-																		(collaboratorId) => ` ${collaboratorId} `
-																  )}.`
-																: `le collaborateur avec l'id : ${bureau.collaboratorsIds.map(
-																		(collaboratorId) => collaboratorId
-																  )}.`
-													  }`
-													: `inoccupé.`}
-											</strong>
-										</p>
-									</motion.li>
-								))}
+								{fakePlan.bureaux.length > 0 &&
+									fakePlan.bureaux.map((bureau, i) => (
+										<motion.li key={`${bureau.id}-${i}`} variants={animatedItemStaggerChildVariants}>
+											<p>
+												Le bureau, avecl'id <strong>{bureau.id}</strong>, et s'appellant <strong>{bureau.name}</strong>,
+												peut contenir {bureau.quantitePlaces > 1 ? `${bureau.quantitePlaces} places` : `qu'une place`}.
+												Il est actuellement{" "}
+												<strong>
+													{bureau.customers.length > 0
+														? `occupé par ${
+																bureau.customers.length > 1
+																	? `les collaborateurs avec s'appelant : ${bureau.customers.map(
+																			(customer) => ` ${customer.firstName} ${customer.lastName} `
+																	  )}.`
+																	: `le collaborateur s'appelant : ${bureau.customers.map(
+																			(customer) => `${customer.firstName} ${customer.lastName}`
+																	  )}.`
+														  }`
+														: `inoccupé.`}
+												</strong>
+											</p>
+										</motion.li>
+									))}
 							</DeskDetails>
 						</DesksDetailsWrapper>
 					</Container>
