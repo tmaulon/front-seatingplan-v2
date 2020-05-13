@@ -7,8 +7,10 @@ import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
 import { BuildingProps, IBuilding } from "../domain/building"
 import { NavLink } from "react-router-dom"
+import { Layout } from "../components/layout/layout"
 
-export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
+export const BuildingTemplatePage: React.FC<BuildingProps> = (props) => {
+	const { match } = props
 	const fakeBuildings: IBuilding[] = FakeBuildingsData
 	const [fakeBuilding, setFakeBuilding] = useState<IBuilding>()
 	const [url, setUrl] = useState<string>("")
@@ -63,7 +65,7 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 									fakeBuilding.etages.map((etage, i) =>
 										etage.plans.map((plan, i) => (
 											<PlanItem
-												to={`/building/building-${fakeBuilding.id}/floor-${etage.id}/plan-${plan.id}`}
+												to={`/building/building-${fakeBuilding.id}/floor-${etage.id}`}
 												title={`Voir plus en détail le plan : ${plan.nom}`}
 												key={`${plan.id}-${i}`}
 											>
@@ -97,6 +99,14 @@ export const BuildingTemplatePage: React.FC<BuildingProps> = ({ match }) => {
 		</>
 	)
 }
+export const BuildingTemplatePageWithLayout: React.FC<BuildingProps> = ({ ...props }) => {
+	return (
+		<Layout>
+			<BuildingTemplatePage {...props} />
+		</Layout>
+	)
+}
+
 const PresentationSection = styled.section`
 	background-color: #282c34;
 	min-height: 100vh;

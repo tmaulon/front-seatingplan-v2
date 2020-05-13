@@ -8,6 +8,7 @@ import { IBuilding, PlanProps, IPlan, FloorProps, IFloor } from "../domain/build
 import { Button } from "../components/button/button"
 import { motion } from "framer-motion"
 import { NavLink } from "react-router-dom"
+import { Layout } from "../components/layout/layout"
 
 const animatedContainerWithStaggerChildrenVariants = {
 	hidden: {
@@ -41,7 +42,8 @@ const animatedItemStaggerChildVariants = {
 	},
 }
 
-export const FloorTemplatePage: React.FC<FloorProps> = ({ match }) => {
+export const FloorTemplatePage: React.FC<FloorProps> = (props) => {
+	const { match } = props
 	const fakeBuildings: IBuilding[] = FakeBuildingsData
 	const [fakeBuilding, setFakeBuilding] = useState<IBuilding>()
 	const [fakeFloor, setFakeFloor] = useState<IFloor>()
@@ -79,9 +81,14 @@ export const FloorTemplatePage: React.FC<FloorProps> = ({ match }) => {
 				<PresentationSection>
 					<Container>
 						<h1>Vous êtes à l'étage : {fakeFloor.id}</h1>
-						<p>
-							Vous pouvez voir {fakeFloor.plans.length} plan{fakeFloor.plans.length > 1 ? "s." : "."}
-						</p>
+						{fakeFloor.plans.length > 0 ? (
+							<p>
+								Vous pouvez voir les différentes configurations de cet étage. A ce jour, il y a {fakeFloor.plans.length}{" "}
+								{fakeFloor.plans.length > 1 ? "" : "seul"} plan{fakeFloor.plans.length > 1 ? "s." : "."}
+							</p>
+						) : (
+							<p>Il n'y a toujuors pas de plan pour cet étage</p>
+						)}
 						<ul>
 							{fakeFloor.plans.map((plan, i) => (
 								<li>
@@ -108,6 +115,14 @@ export const FloorTemplatePage: React.FC<FloorProps> = ({ match }) => {
 				{!loading && error && <p>{error}</p>}
 			</section>
 		</>
+	)
+}
+
+export const FloorTemplatePageWithLayout: React.FC<FloorProps> = ({ ...props }) => {
+	return (
+		<Layout>
+			<FloorTemplatePage {...props} />
+		</Layout>
 	)
 }
 const PresentationSection = styled.section`

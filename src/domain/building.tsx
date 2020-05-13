@@ -16,7 +16,7 @@ export interface IDesk {
 	floorsNumber: number
 	quantitePlaces: number
 	estOccupe: boolean
-	collaboratorsIds?: number[]
+	collaboratorsIds: number[]
 }
 export interface IPlan {
 	id: number

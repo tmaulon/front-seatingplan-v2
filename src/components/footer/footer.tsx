@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
-import { openingHomePageAnimationsVariants } from "../../App"
+import { openingHomePageAnimationsVariants } from "../layout/layout"
 
-export const Footer = ({ isHomePage }: { isHomePage: boolean }) => {
+export const Footer = ({ isHomePage }: { isHomePage?: boolean }) => {
 	return (
 		<StyledFooter
 			variants={openingHomePageAnimationsVariants}
