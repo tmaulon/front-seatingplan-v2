@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Container } from "../components/container/container"
 import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
-import { IBuilding, PlanProps, IPlan } from "../domain/building"
+import { IBuilding, PlanProps, IPlan, IFloor, ICollaborator, IDesk } from "../domain/building"
 import { Button } from "../components/button/button"
 import { motion } from "framer-motion"
 import { Layout } from "../components/layout/layout"
@@ -86,10 +86,16 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 		if (!getSelectedPlan) return
 		setFakePlan(getSelectedPlan)
 	}, [fakeBuildings, fakeBuilding, match.params.buildingId, match.params.floorId, match.params.planId])
-	console.log(
-		"ids des collaborateurs : ",
-		fakePlan?.bureaux[0].collaboratorsIds.map((c) => c)
-	)
+
+	const getTotalCollaboratorsInThisPlan = (plan: IPlan) =>
+		plan.bureaux
+			.map((bureau) => bureau.customers.length)
+			.reduce(
+				(nextDeskCustomersLength, previousDeskCustomersLength) => nextDeskCustomersLength + previousDeskCustomersLength
+			)
+
+	const getCollaboratorDeskObject = (customer: ICollaborator, desks: IDesk[]) =>
+		desks.find(({ id }) => id === customer.deskId)
 
 	return (
 		<>
@@ -118,7 +124,7 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 									Nom du plan : <strong>{fakePlan.nom}</strong>.
 								</li>
 								<li>
-									Nombre de collaborateurs à cet étage : <strong>{fakePlan?.collaborators?.length}</strong>.
+									Nombre de collaborateurs à cet étage : <strong>{getTotalCollaboratorsInThisPlan(fakePlan)}</strong>.
 								</li>
 								<li>
 									Peut accueillir <strong>{fakePlan.receptionMaxcapacity}</strong> bureaux.
@@ -139,13 +145,29 @@ export const PlanTemplatePage: React.FC<PlanProps> = (props) => {
 								initial={collaboratorsListOpen ? "visible" : "hidden"}
 								animate={collaboratorsListOpen ? "visible" : "hidden"}
 							>
-								{fakePlan?.collaborators?.map((collaborator, i) => (
+								{fakePlan.bureaux.length > 0 &&
+									fakePlan.bureaux.map(
+										(bureau) =>
+											bureau.customers.length > 0 &&
+											bureau.customers.map((collaborator, i) => (
+												<motion.li key={`${collaborator.id}-${i}`} variants={animatedItemStaggerChildVariants}>
+													Le Collaborateur, avecl'id <strong>{collaborator.id}</strong>, et s'appellant{" "}
+													<strong>{`${collaborator.firstName} ${collaborator.lastName}`}</strong>, est installé sur le
+													bureau s'appelant{" "}
+													<strong>
+														{getCollaboratorDeskObject(collaborator, fakePlan.bureaux) &&
+															getCollaboratorDeskObject.name}
+													</strong>
+												</motion.li>
+											))
+									)}
+								{/* { fakePlan.bureaux.customers.length > 0 && fakePlan.bureaux.customers.map((collaborator, i) => (
 									<motion.li key={`${collaborator.id}-${i}`} variants={animatedItemStaggerChildVariants}>
 										Le Collaborateur, avecl'id <strong>{collaborator.id}</strong>, et s'appellant{" "}
 										<strong>{`${collaborator.firstName} ${collaborator.lastName}`}</strong>, est installé sur le bureau
 										avec l'id <strong>{collaborator.deskId}</strong>
 									</motion.li>
-								))}
+								))} */}
 							</CollaboratorsDetails>
 						</CollaBoratorsDetailsWrapper>
 						<DesksDetailsWrapper>
