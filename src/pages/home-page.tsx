@@ -7,7 +7,7 @@ import { useCustomfetch } from "../hooks/useCustomFetch"
 import { FakeBuildingsData } from "../content/fake-buildings-data"
 import { IBuilding } from "../domain/building"
 import { motion } from "framer-motion"
-import { openingHomePageAnimationsVariants } from "../App"
+import { openingHomePageAnimationsVariants, Layout } from "../components/layout/layout"
 
 export const HomePage = () => {
 	const [url, setUrl] = useState<string>("")
@@ -67,6 +67,14 @@ export const HomePage = () => {
 			<BuildingsZonesSection buildings={FakeBuildingsData} />
 			{!loading && buildings && <BuildingsZonesSection buildings={buildings} />}
 		</motion.div>
+	)
+}
+
+export const HomePageWithLayout = () => {
+	return (
+		<Layout isHomePage>
+			<HomePage />
+		</Layout>
 	)
 }
 
